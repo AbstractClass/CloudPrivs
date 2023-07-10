@@ -91,7 +91,7 @@ To implement a new provider (ex. GCP) is simple
 5. Use the [Click](https://click.palletsprojects.com/en/8.1.x/) to create a CLI for your provider and name your cli entry function `cli` (see the AWS provider for reference)
 6. Done! Running `cloudprivs <provider>` should now show your CLI
 
-## Custom Tests
+### Custom Tests
 The AWS provider supports the injection of arguments when calling AWS functions. This feature is provided because often times an AWS function requires arguments to be called and in some cases these arguments can be fixed variables. This means if we can provided dummy variables we can increase our testing coverage. In other cases we can inject arguments like `dryrun=true` to make calls go faster.
 
 Custom tests are stored in a YAML file at `cloudprivs/providers/aws/CustomTests.yaml`. 
