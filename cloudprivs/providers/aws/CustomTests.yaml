@@ -1,0 +1,16 @@
+---
+cloudsearchdomain:
+  - search:
+      args:
+      kwargs:
+        query: "*"
+codeguru-reviewer:
+  - list_code_reviews:
+      args:
+      kwargs:
+        Type: "RepositoryAnalysis"
+ec2:
+  - describe:
+      args:
+      kwargs:
+        DryRun: True
