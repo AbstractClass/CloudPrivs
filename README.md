@@ -30,7 +30,7 @@ You can also use Pyenv+virtualenv if available:
 git clone https://github.com/AbstractClass/CloudPrivs
 cd CloudPrivs
 pyenv virtualenv CloudPrivs
-pyenv local CloudPRivs
+pyenv local CloudPrivs
 python -m pip install -e .
 ```
 
@@ -126,6 +126,23 @@ ec2:
 ### Adding New Rules
 New rules can be added by either modifying the existing `CustomTests.yaml` file or creating a new YAML file and specifying it with the `--custom-tests` flag. The new file will be merged with the existing tests file and any duplicate values will be overridden with the supplied file getting priority.
 
+## Library Usage
+### AWS
+The AWS provider is written as a Library for integration into other tools. You can use it as follows:
+```python
+import boto3
+from cloudprivs.providers.aws import service
+from concurrent.futures import ThreadPoolExecutor
+
+session = boto3.Session('default')
+with ThreadPoolExecutor(15) as executor:
+  iam = service.Service('iam', session, executor=executor)
+  scan_results = iam.scan() # will cover all regions listed in the executor (all available regions by default)
+  formatted_results iam.pretty_print_scan(scan_results)
+  print(formatted_results)
+```
+Everything is fully documented in the code, should be pretty easy to parse.
+
 ## Road Map
 This tools is functional, but far from complete. I am actively working on new features and am open to contributions, so please feel free to open Issues/Feature Requests, and send PRs.
 
@@ -135,6 +152,7 @@ This tools is functional, but far from complete. I am actively working on new fe
 - More custom tests
 - JSON output
 - Add unit tests
+- Refactor return types for scanning functions
 - Better error handling, especially for Keyboard Interrupt
 - Migration to Golang
 
