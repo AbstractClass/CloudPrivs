@@ -73,7 +73,7 @@ Unlike other tools such as [WeirdAAL](https://github.com/carnal0wnage/weirdAAL) 
 
 Once a full list is generated, each function is called without arguments by default, although the option to add custom arguments per operation is supported (more info at [#Customizing](#customizing))
 
-> Note: some AWS functions can incur costs when called, I have deny-listed all operations starting with `open` or `purchase` to mitigate accidental costs, which appears to be safe in my own testing, but please use this with caution. I don't guarantee you won't accidentally incur costs when calling all these functions (even if it's without arguments)
+> Note: some AWS functions can incur costs when called, I have only allowed operations starting with `get_`, `list_`, and `describe_` to mitigate accidental costs, which appears to be safe in my own testing, but please use this with caution. This appears to be safe for other tools like [enumerate-iam](https://github.com/andresriancho/enumerate-iam) I don't guarantee you won't accidentally incur costs when calling all these functions (even if it's without arguments)
 
 ## Customizing
 CloudPrivs supports easy extension/customizing in two areas:
