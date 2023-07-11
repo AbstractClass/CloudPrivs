@@ -78,7 +78,7 @@ class Service:
         self.executor = executor
         self.config = botocore.client.Config(connect_timeout=timeout, retries={'max_attempts': retries})
         # TODO move these options to a file?
-        self._operation_safety_filters = {"purchase_", "open_"} # these calls can sometimes run without arguments and cost money
+        self._operation_safety_filters = {"get_", "list_", "describe_"} # these calls are safe and won't incur charges (probably)
         if not injected_args:
             self.injected_args = {}
         else:
@@ -110,9 +110,8 @@ class Service:
         self.operations = []
         for op in self.clients[0].meta.method_to_api_mapping.keys():
             for pattern in self._operation_safety_filters:
-                if pattern in op:
-                    break
-                self.operations.append(op)
+                if op.startswith(pattern):
+                    self.operations.append(op)
         
         self.method_map = self.clients[0].meta.method_to_api_mapping  # sugar
 

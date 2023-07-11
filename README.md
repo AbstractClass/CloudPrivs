@@ -86,7 +86,7 @@ To implement a new provider (ex. GCP) is simple
 
 1. Write the logic to do the tests, naming convention and structure does not matter
 2. Under the `CloudPrivs/providers` folder, create a new folder for your provider (ex. 'gcp')
-3. In the `CloudPrivs/__init__.py` file, add your provider to the `__all__` variable, it must match the name of the folder
+3. In the `CloudPrivs/providers/__init__.py` file, add your provider to the `__all__` variable, it must match the name of the folder
 4. Create a file called `cli.py` in your provider folder
 5. Use the [Click](https://click.palletsprojects.com/en/8.1.x/) to create a CLI for your provider and name your cli entry function `cli` (see the AWS provider for reference)
 6. Done! Running `cloudprivs <provider>` should now show your CLI
