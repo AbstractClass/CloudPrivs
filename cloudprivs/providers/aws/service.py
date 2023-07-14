@@ -145,8 +145,11 @@ class Service:
         ):  # Function needs arguments, no point in testing it
             permissions.errored = True
         except botocore.exceptions.ClientError as e:
-            permissions.failed = True
-
+            client_exceptions = dir(client.exceptions)
+            if e.response['Error']['Code'] in client_exceptions and e.response['Error']['Code'] != 'ClientError':
+                permissions.succeeded = True # Hit an error that isn't related to auth, this is a success because auth errors always trigger first
+            else:
+                permissions.failed = True
         return permissions
 
     def _get_custom_args(self, operation) -> Tuple[list, dict]:

@@ -14,3 +14,8 @@ ec2:
       args:
       kwargs:
         DryRun: True
+s3:
+  - list_object:
+      args:
+      kwargs:
+        Bucket: "sdkjfgbsjfhbkjhbehjriugfjshfbha"
