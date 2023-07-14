@@ -84,28 +84,32 @@ class Service:
         else:
             self.injected_args = injected_args
 
-        try:
-            self.regions = self.session.get_available_regions(service)
+        self.regions = self.session.get_available_regions(service)
 
-        except AttributeError:  # Some services don't have regions
+        #except AttributeError:  # Some services don't have regions
+        #    self.regions = ['aws-global']
+        
+        if not self.regions:
             self.regions = ['aws-global']
         
         if regions: # apply region filter
             filtered_regions = []
             for region in self.regions:
+                if region == 'aws-global':
+                    filtered_regions.append('aws-global')
+                    continue # always keep aws-global
                 for region_filter in regions:
                     if region_filter in region:
                         filtered_regions.append(region)
             self.regions = filtered_regions
-            #if len(self.regions) < 2:
-            #    raise InvalidRegionError(self.service_name, regions)
-
-        if self.regions: # this could be more DRY but I like how explicit this is
+        
+        if len(self.regions) > 0: # this could be more DRY but I like how explicit this is
             self.clients = [
                 session.client(service, region_name=region, config=self.config) for region in self.regions
             ]
         else:
-            self.clients = [session.client(service, config=self.config)]
+            # self.clients = [session.client(service, config=self.config, region_name="aws-global")]
+            raise InvalidRegionError(self.service_name, regions)
 
         self.operations = []
         for op in self.clients[0].meta.method_to_api_mapping.keys():
