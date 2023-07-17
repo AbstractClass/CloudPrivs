@@ -1,4 +1,9 @@
 ---
+alexaforbusiness:
+  - create_address_book:
+      args:
+      kwargs:
+        Name: "Test"
 cloudsearchdomain:
   - search:
       args:
@@ -9,13 +14,57 @@ codeguru-reviewer:
       args:
       kwargs:
         Type: "RepositoryAnalysis"
+cognito_identity:
+  - list_:
+      args:
+      kwargs:
+        MaxResults: 1
 ec2:
+  - describe_images:
+      args:
+      kwargs:
+        DryRun: True
+        Owners: 
+          - self
   - describe:
       args:
       kwargs:
         DryRun: True
+iam:
+  - list_user_policies:
+      args:
+      kwargs:
+        UserName: "root"
+  - list_groups_for_user:
+      args:
+      kwargs:
+        UserName: "root"
+organizations:
+  - list_policies:
+      args:
+      kwargs:
+        Filter: "SERVICE_CONTROL_POLICY"
+ram:
+  - list_resources:
+      args:
+      kwargs:
+        resourceOwner: "SELF"
+  - list_principals:
+      args:
+      kwargs:
+        resourceOwner: "SELF"
 s3:
   - list_object:
       args:
       kwargs:
         Bucket: "sdkjfgbsjfhbkjhbehjriugfjshfbha"
+swf:
+  - list_domains:
+      args:
+      kwargs:
+        registrationStatus: "REGISTERED"
+wafv2:
+  - list_:
+      args:
+      kwargs:
+        Scope: "REGIONAL"
