@@ -78,13 +78,6 @@ def scan_service(
     help="Only test the given services instead of all available services",
 )
 @click.option(
-    "--parallel/--no-parallel",
-    is_flag=True,
-    default=True,
-    show_default=True,
-    help="Should run in parallel, max threads is 15",
-)
-@click.option(
     "--verbose",
     "-v",
     is_flag=True,
@@ -96,12 +89,9 @@ def aws(
     custom_tests: Optional[TextIO],
     profile: Optional[str],
     services: Optional[List[str]],
-    parallel: bool,
     verbose: bool,
 ):
-    executor = ThreadPoolExecutor(1)
-    if parallel:
-        executor = ThreadPoolExecutor(max_workers=MAX_WORKERS)
+    executor = ThreadPoolExecutor(max_workers=MAX_WORKERS)
     if profile:
         session = boto3.Session(profile_name=profile)
     else:
