@@ -10,7 +10,7 @@ from enum import Enum
 from typing import Optional, Dict, List, Tuple, Set
 
 LINE_CLEAR = "\033[K"
-MAX_WORKERS = 15
+MAX_WORKERS = 30
 TESTS_LOCATION = os.path.join(os.path.dirname(__file__), "CustomTests.yaml")
 
 
@@ -171,7 +171,6 @@ class Service:
         results = None
         error = None
         try:
-            print(operation, client.meta.region)
             results = getattr(client, operation)(
                 *args, **kwargs
             )  # invoke function from strings
@@ -269,7 +268,8 @@ class Service:
                     f"[!] Connection timeout: {self.service_name}->{operation} in {region}",
                     file=sys.stderr,
                 )
-            except AttributeError:
+            except AttributeError as e:
+                raise e
                 print(
                     f"[!] Boto3 LIED! {self.service_name}->{operation} isn't in {self.service_name}",
                     file=sys.stderr,
