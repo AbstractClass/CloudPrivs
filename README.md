@@ -44,8 +44,6 @@ Currently the only provider available is AWS, but I am working on GCP. If you'd 
 ```
 Options:
   -v, --verbose                Show failed and errored tests in the output
-  --parallel / --no-parallel   Should run in parallel, max threads is 15
-                               [default: parallel]
   -s, --services TEXT          Only test the given services instead of all
                                available services
   -p, --profile TEXT           The name of the AWS profile to scan, if not
@@ -149,10 +147,6 @@ This tools is functional, but far from complete. I am actively working on new fe
 **Features Planned**
 - Add tool to PyPi
 - GCP Support
-- More custom tests
 - JSON output
 - Add unit tests
-- Refactor return types for scanning functions
-- Better error handling, especially for Keyboard Interrupt
 - Migration to Golang
-
