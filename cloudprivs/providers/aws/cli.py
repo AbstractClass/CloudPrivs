@@ -31,14 +31,27 @@ def scan_service(
         results.append(
             f"[!] Service: {service_name} is not available in the regions supplied"
         )
-    for result in sorted(results, key=lambda x: ["=", "+", "-", "!"].index(x[1])):
-        fg = "white"
-        if result.startswith("[+]"):
-            fg = "green"
-        elif result.startswith("[!]") or result.startswith("[-]"):
-            fg = "red"
-        click.echo(click.style(result, fg=fg))
-
+    # for result in sorted(results, key=lambda x: ["=", "+", "-", "!"].index(x[1])):
+    title = ''
+    successes = []
+    fails = []
+    errors = []
+    for result in results:
+        if result.startswith('='):
+            title = result
+        elif result.startswith('[+]'):
+            successes.append(result)
+        elif result.startswith('[-]'):
+            fails.append(result)
+        else:
+            errors.append(result)
+    click.echo(click.style(title,fg="white"))
+    for i in sorted(successes):
+        click.echo(click.style(i, fg="green"))
+    for i in sorted(fails):
+        click.echo(click.style(i, fg="red"))
+    for i in sorted(errors):
+        click.echo(click.style(i, fg="red"))
 
 @click.option(
     "--regions",
@@ -86,7 +99,7 @@ def aws(
     parallel: bool,
     verbose: bool,
 ):
-    executor = None
+    executor = ThreadPoolExecutor(1)
     if parallel:
         executor = ThreadPoolExecutor(max_workers=MAX_WORKERS)
     if profile:
@@ -124,33 +137,21 @@ def aws(
     click.echo("[*] Enumerated services and regions")
 
     start = time.time()
-    if executor:
-        futures = [
-            executor.submit(
-                scan_service(
-                    service,
-                    executor,
-                    not verbose,
-                    session=session,
-                    regions=regions,
-                    injected_args=injected_vars,
-                )
+    futures = [
+        executor.submit(
+            scan_service(
+                service,
+                executor,
+                not verbose,
+                session=session,
+                regions=regions,
+                injected_args=injected_vars,
             )
-            for service in target_services
-        ]
-        for _ in as_completed(futures):
-            pass
-    else:
-        for service in target_services:
-            click.echo(
-                scan_service(
-                    service,
-                    executor,
-                    session=session,
-                    regions=regions,
-                    injected_args=injected_vars,
-                )
-            )
+        )
+        for service in target_services
+    ]
+    for _ in as_completed(futures):
+        pass
     click.echo(f"Finished in {time.time() - start:.2f} seconds")
     click.echo("Happy hunting ;)")
     return
