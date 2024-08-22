@@ -12,7 +12,7 @@ from typing import Optional, Dict, List, Tuple, Set
 LINE_CLEAR = "\033[K"
 MAX_WORKERS = 30
 TESTS_LOCATION = os.path.join(os.path.dirname(__file__), "CustomTests.yaml")
-TEST_FAILED_STRINGS = ["AccessDenied", "AccessDeniedException", "UnauthorizedOperation"]
+TEST_FAILED_STRINGS = ["AccessDenied", "UnauthorizedOperation"]
 
 
 class TestStatus(Enum):
@@ -184,7 +184,12 @@ class Service:
             error = e
         except botocore.exceptions.ClientError as e:
             client_exceptions = dir(client.exceptions)
-            if  e.response["Error"]["Code"] not in TEST_FAILED_STRINGS:
+            access_denied = False
+            for string in TEST_FAILED_STRINGS:
+                if string in e.response["Error"]["Code"]:
+                    access_denied = True
+                    break
+            if not access_denied:
                 status = (
                     TestStatus.SUCCEEDED
                 )  # Hit an error that isn't related to auth, this is a success because auth errors always trigger first
