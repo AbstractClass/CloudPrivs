@@ -183,7 +183,7 @@ class Service:
             error = e
         except botocore.exceptions.ClientError as e:
             client_exceptions = dir(client.exceptions)
-            if e.response["Error"]["Code"] != "AccessDenied":
+            if  "AccessDenied" not in e.response["Error"]["Code"]:
                 status = (
                     TestStatus.SUCCEEDED
                 )  # Hit an error that isn't related to auth, this is a success because auth errors always trigger first
