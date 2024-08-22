@@ -12,7 +12,7 @@ from typing import Optional, Dict, List, Tuple, Set
 LINE_CLEAR = "\033[K"
 MAX_WORKERS = 30
 TESTS_LOCATION = os.path.join(os.path.dirname(__file__), "CustomTests.yaml")
-TEST_FAILED_STRINGS = ["AccessDenied", "UnauthorizedOperation"]
+TEST_FAILED_STRINGS = ["AccessDenied", "UnauthorizedOperation", "Forbidden"]
 
 
 class TestStatus(Enum):
