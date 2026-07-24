@@ -31,5 +31,9 @@ for provider in providers.__all__:
     provider_cli = importlib.import_module(f"cloudprivs.providers.{provider}.cli")
     cli.add_command(getattr(provider_cli, provider))
 
+from cloudprivs.providers.aws.generate_metadata import generate_aws_metadata
+
+cli.add_command(generate_aws_metadata)
+
 if __name__ == "__main__":
     cli()

@@ -1,0 +1,2444 @@
+appstream:
+- operation: create_imported_image
+  other_required_args:
+  - Name
+clouddirectory:
+- operation: upgrade_applied_schema
+  other_required_args:
+  - PublishedSchemaArn
+  - DirectoryArn
+- operation: upgrade_published_schema
+  other_required_args:
+  - DevelopmentSchemaArn
+  - PublishedSchemaArn
+  - MinorVersion
+ec2:
+- operation: accept_address_transfer
+  other_required_args:
+  - Address
+- operation: accept_capacity_reservation_billing_ownership
+  other_required_args:
+  - CapacityReservationId
+- operation: accept_reserved_instances_exchange_quote
+  other_required_args:
+  - ReservedInstanceIds
+- operation: accept_transit_gateway_client_vpn_attachment
+  other_required_args:
+  - TransitGatewayAttachmentId
+- operation: accept_transit_gateway_multicast_domain_associations
+  other_required_args: []
+- operation: accept_transit_gateway_peering_attachment
+  other_required_args:
+  - TransitGatewayAttachmentId
+- operation: accept_transit_gateway_vpc_attachment
+  other_required_args:
+  - TransitGatewayAttachmentId
+- operation: accept_vpc_endpoint_connections
+  other_required_args:
+  - ServiceId
+  - VpcEndpointIds
+- operation: accept_vpc_peering_connection
+  other_required_args:
+  - VpcPeeringConnectionId
+- operation: advertise_byoip_cidr
+  other_required_args:
+  - Cidr
+- operation: allocate_address
+  other_required_args: []
+- operation: allocate_ipam_pool_cidr
+  other_required_args:
+  - IpamPoolId
+- operation: apply_security_groups_to_client_vpn_target_network
+  other_required_args:
+  - ClientVpnEndpointId
+  - VpcId
+  - SecurityGroupIds
+- operation: assign_private_nat_gateway_address
+  other_required_args:
+  - NatGatewayId
+- operation: associate_address
+  other_required_args: []
+- operation: associate_capacity_reservation_billing_owner
+  other_required_args:
+  - CapacityReservationId
+  - UnusedReservationBillingOwnerId
+- operation: associate_client_vpn_target_network
+  other_required_args:
+  - ClientVpnEndpointId
+- operation: associate_dhcp_options
+  other_required_args:
+  - DhcpOptionsId
+  - VpcId
+- operation: associate_enclave_certificate_iam_role
+  other_required_args:
+  - CertificateArn
+  - RoleArn
+- operation: associate_instance_event_window
+  other_required_args:
+  - InstanceEventWindowId
+  - AssociationTarget
+- operation: associate_ipam_byoasn
+  other_required_args:
+  - Asn
+  - Cidr
+- operation: associate_ipam_resource_discovery
+  other_required_args:
+  - IpamId
+  - IpamResourceDiscoveryId
+- operation: associate_nat_gateway_address
+  other_required_args:
+  - NatGatewayId
+  - AllocationIds
+- operation: associate_route_server
+  other_required_args:
+  - RouteServerId
+  - VpcId
+- operation: associate_route_table
+  other_required_args:
+  - RouteTableId
+- operation: associate_security_group_vpc
+  other_required_args:
+  - GroupId
+  - VpcId
+- operation: associate_transit_gateway_multicast_domain
+  other_required_args:
+  - TransitGatewayMulticastDomainId
+  - TransitGatewayAttachmentId
+  - SubnetIds
+- operation: associate_transit_gateway_policy_table
+  other_required_args:
+  - TransitGatewayPolicyTableId
+  - TransitGatewayAttachmentId
+- operation: associate_transit_gateway_route_table
+  other_required_args:
+  - TransitGatewayRouteTableId
+  - TransitGatewayAttachmentId
+- operation: associate_trunk_interface
+  other_required_args:
+  - BranchInterfaceId
+  - TrunkInterfaceId
+- operation: attach_classic_link_vpc
+  other_required_args:
+  - InstanceId
+  - VpcId
+  - Groups
+- operation: attach_image_watermark
+  other_required_args:
+  - ImageId
+  - WatermarkName
+- operation: attach_internet_gateway
+  other_required_args:
+  - InternetGatewayId
+  - VpcId
+- operation: attach_network_interface
+  other_required_args:
+  - NetworkInterfaceId
+  - InstanceId
+  - DeviceIndex
+- operation: attach_verified_access_trust_provider
+  other_required_args:
+  - VerifiedAccessInstanceId
+  - VerifiedAccessTrustProviderId
+- operation: attach_volume
+  other_required_args:
+  - Device
+  - InstanceId
+  - VolumeId
+- operation: attach_vpn_gateway
+  other_required_args:
+  - VpcId
+  - VpnGatewayId
+- operation: authorize_client_vpn_ingress
+  other_required_args:
+  - ClientVpnEndpointId
+  - TargetNetworkCidr
+- operation: authorize_security_group_egress
+  other_required_args:
+  - GroupId
+- operation: authorize_security_group_ingress
+  other_required_args: []
+- operation: bundle_instance
+  other_required_args:
+  - InstanceId
+  - Storage
+- operation: cancel_bundle_task
+  other_required_args:
+  - BundleId
+- operation: cancel_capacity_reservation
+  other_required_args:
+  - CapacityReservationId
+- operation: cancel_capacity_reservation_fleets
+  other_required_args:
+  - CapacityReservationFleetIds
+- operation: cancel_conversion_task
+  other_required_args:
+  - ConversionTaskId
+- operation: cancel_declarative_policies_report
+  other_required_args:
+  - ReportId
+- operation: cancel_image_launch_permission
+  other_required_args:
+  - ImageId
+- operation: cancel_import_task
+  other_required_args: []
+- operation: cancel_spot_fleet_requests
+  other_required_args:
+  - SpotFleetRequestIds
+  - TerminateInstances
+- operation: cancel_spot_instance_requests
+  other_required_args:
+  - SpotInstanceRequestIds
+- operation: confirm_product_instance
+  other_required_args:
+  - InstanceId
+  - ProductCode
+- operation: copy_fpga_image
+  other_required_args:
+  - SourceFpgaImageId
+  - SourceRegion
+- operation: copy_image
+  other_required_args:
+  - Name
+  - SourceImageId
+  - SourceRegion
+- operation: copy_snapshot
+  other_required_args:
+  - SourceRegion
+  - SourceSnapshotId
+- operation: copy_volumes
+  other_required_args:
+  - SourceVolumeId
+- operation: create_capacity_manager_data_export
+  other_required_args:
+  - S3BucketName
+  - Schedule
+  - OutputFormat
+- operation: create_capacity_reservation
+  other_required_args:
+  - InstanceType
+  - InstancePlatform
+  - InstanceCount
+- operation: create_capacity_reservation_by_splitting
+  other_required_args:
+  - SourceCapacityReservationId
+  - InstanceCount
+- operation: create_capacity_reservation_cancellation_quote
+  other_required_args:
+  - CapacityReservationId
+- operation: create_capacity_reservation_fleet
+  other_required_args:
+  - TotalTargetCapacity
+- operation: create_carrier_gateway
+  other_required_args:
+  - VpcId
+- operation: create_client_vpn_endpoint
+  other_required_args:
+  - ServerCertificateArn
+  - AuthenticationOptions
+  - ConnectionLogOptions
+- operation: create_client_vpn_route
+  other_required_args:
+  - ClientVpnEndpointId
+  - DestinationCidrBlock
+- operation: create_coip_cidr
+  other_required_args:
+  - Cidr
+  - CoipPoolId
+- operation: create_coip_pool
+  other_required_args:
+  - LocalGatewayRouteTableId
+- operation: create_customer_gateway
+  other_required_args:
+  - Type
+- operation: create_default_subnet
+  other_required_args: []
+- operation: create_default_vpc
+  other_required_args: []
+- operation: create_delegate_mac_volume_ownership_task
+  other_required_args:
+  - InstanceId
+  - MacCredentials
+- operation: create_dhcp_options
+  other_required_args:
+  - DhcpConfigurations
+- operation: create_egress_only_internet_gateway
+  other_required_args:
+  - VpcId
+- operation: create_fleet
+  other_required_args:
+  - LaunchTemplateConfigs
+  - TargetCapacitySpecification
+- operation: create_flow_logs
+  other_required_args:
+  - ResourceIds
+  - ResourceType
+- operation: create_fpga_image
+  other_required_args:
+  - InputStorageLocation
+- operation: create_image
+  other_required_args:
+  - InstanceId
+  - Name
+- operation: create_image_usage_report
+  other_required_args:
+  - ImageId
+  - ResourceTypes
+- operation: create_instance_connect_endpoint
+  other_required_args:
+  - SubnetId
+- operation: create_instance_event_window
+  other_required_args: []
+- operation: create_internet_gateway
+  other_required_args: []
+- operation: create_interruptible_capacity_reservation_allocation
+  other_required_args:
+  - CapacityReservationId
+  - InstanceCount
+- operation: create_ipam
+  other_required_args: []
+- operation: create_ipam_external_resource_verification_token
+  other_required_args:
+  - IpamId
+- operation: create_ipam_policy
+  other_required_args:
+  - IpamId
+- operation: create_ipam_pool
+  other_required_args:
+  - IpamScopeId
+  - AddressFamily
+- operation: create_ipam_prefix_list_resolver
+  other_required_args:
+  - IpamId
+  - AddressFamily
+- operation: create_ipam_prefix_list_resolver_target
+  other_required_args:
+  - IpamPrefixListResolverId
+  - PrefixListId
+  - PrefixListRegion
+  - TrackLatestVersion
+- operation: create_ipam_resource_discovery
+  other_required_args: []
+- operation: create_ipam_scope
+  other_required_args:
+  - IpamId
+- operation: create_key_pair
+  other_required_args:
+  - KeyName
+- operation: create_launch_template
+  other_required_args:
+  - LaunchTemplateName
+  - LaunchTemplateData
+- operation: create_launch_template_version
+  other_required_args:
+  - LaunchTemplateData
+- operation: create_local_gateway_route
+  other_required_args:
+  - LocalGatewayRouteTableId
+- operation: create_local_gateway_route_table
+  other_required_args:
+  - LocalGatewayId
+- operation: create_local_gateway_route_table_virtual_interface_group_association
+  other_required_args:
+  - LocalGatewayRouteTableId
+  - LocalGatewayVirtualInterfaceGroupId
+- operation: create_local_gateway_route_table_vpc_association
+  other_required_args:
+  - LocalGatewayRouteTableId
+  - VpcId
+- operation: create_local_gateway_virtual_interface
+  other_required_args:
+  - LocalGatewayVirtualInterfaceGroupId
+  - OutpostLagId
+  - Vlan
+  - LocalAddress
+  - PeerAddress
+- operation: create_local_gateway_virtual_interface_group
+  other_required_args:
+  - LocalGatewayId
+- operation: create_mac_system_integrity_protection_modification_task
+  other_required_args:
+  - InstanceId
+  - MacSystemIntegrityProtectionStatus
+- operation: create_managed_prefix_list
+  other_required_args:
+  - PrefixListName
+  - MaxEntries
+  - AddressFamily
+- operation: create_nat_gateway
+  other_required_args: []
+- operation: create_network_acl
+  other_required_args:
+  - VpcId
+- operation: create_network_acl_entry
+  other_required_args:
+  - NetworkAclId
+  - RuleNumber
+  - Protocol
+  - RuleAction
+  - Egress
+- operation: create_network_insights_access_scope
+  other_required_args:
+  - ClientToken
+- operation: create_network_insights_path
+  other_required_args:
+  - Source
+  - Protocol
+  - ClientToken
+- operation: create_network_interface
+  other_required_args:
+  - SubnetId
+- operation: create_network_interface_permission
+  other_required_args:
+  - NetworkInterfaceId
+  - Permission
+- operation: create_placement_group
+  other_required_args: []
+- operation: create_public_ipv4_pool
+  other_required_args: []
+- operation: create_replace_root_volume_task
+  other_required_args:
+  - InstanceId
+- operation: create_restore_image_task
+  other_required_args:
+  - Bucket
+  - ObjectKey
+- operation: create_route
+  other_required_args:
+  - RouteTableId
+- operation: create_route_server
+  other_required_args:
+  - AmazonSideAsn
+- operation: create_route_server_endpoint
+  other_required_args:
+  - RouteServerId
+  - SubnetId
+- operation: create_route_server_peer
+  other_required_args:
+  - RouteServerEndpointId
+  - PeerAddress
+  - BgpOptions
+- operation: create_route_table
+  other_required_args:
+  - VpcId
+- operation: create_secondary_network
+  other_required_args:
+  - Ipv4CidrBlock
+  - NetworkType
+- operation: create_secondary_subnet
+  other_required_args:
+  - Ipv4CidrBlock
+  - SecondaryNetworkId
+- operation: create_security_group
+  other_required_args:
+  - Description
+  - GroupName
+- operation: create_snapshot
+  other_required_args:
+  - VolumeId
+- operation: create_snapshots
+  other_required_args:
+  - InstanceSpecification
+- operation: create_spot_datafeed_subscription
+  other_required_args:
+  - Bucket
+- operation: create_store_image_task
+  other_required_args:
+  - ImageId
+  - Bucket
+- operation: create_subnet
+  other_required_args:
+  - VpcId
+- operation: create_subnet_cidr_reservation
+  other_required_args:
+  - SubnetId
+  - Cidr
+  - ReservationType
+- operation: create_tags
+  other_required_args:
+  - Resources
+  - Tags
+- operation: create_traffic_mirror_filter
+  other_required_args: []
+- operation: create_traffic_mirror_filter_rule
+  other_required_args:
+  - TrafficMirrorFilterId
+  - TrafficDirection
+  - RuleNumber
+  - RuleAction
+  - DestinationCidrBlock
+  - SourceCidrBlock
+- operation: create_traffic_mirror_session
+  other_required_args:
+  - NetworkInterfaceId
+  - TrafficMirrorTargetId
+  - TrafficMirrorFilterId
+  - SessionNumber
+- operation: create_traffic_mirror_target
+  other_required_args: []
+- operation: create_transit_gateway
+  other_required_args: []
+- operation: create_transit_gateway_connect
+  other_required_args:
+  - TransportTransitGatewayAttachmentId
+  - Options
+- operation: create_transit_gateway_connect_peer
+  other_required_args:
+  - TransitGatewayAttachmentId
+  - PeerAddress
+  - InsideCidrBlocks
+- operation: create_transit_gateway_metering_policy
+  other_required_args:
+  - TransitGatewayId
+- operation: create_transit_gateway_metering_policy_entry
+  other_required_args:
+  - TransitGatewayMeteringPolicyId
+  - PolicyRuleNumber
+  - MeteredAccount
+- operation: create_transit_gateway_multicast_domain
+  other_required_args:
+  - TransitGatewayId
+- operation: create_transit_gateway_peering_attachment
+  other_required_args:
+  - TransitGatewayId
+  - PeerTransitGatewayId
+  - PeerAccountId
+  - PeerRegion
+- operation: create_transit_gateway_policy_table
+  other_required_args:
+  - TransitGatewayId
+- operation: create_transit_gateway_prefix_list_reference
+  other_required_args:
+  - TransitGatewayRouteTableId
+  - PrefixListId
+- operation: create_transit_gateway_route
+  other_required_args:
+  - DestinationCidrBlock
+  - TransitGatewayRouteTableId
+- operation: create_transit_gateway_route_table
+  other_required_args:
+  - TransitGatewayId
+- operation: create_transit_gateway_route_table_announcement
+  other_required_args:
+  - TransitGatewayRouteTableId
+  - PeeringAttachmentId
+- operation: create_transit_gateway_vpc_attachment
+  other_required_args:
+  - TransitGatewayId
+  - VpcId
+  - SubnetIds
+- operation: create_verified_access_endpoint
+  other_required_args:
+  - VerifiedAccessGroupId
+  - EndpointType
+  - AttachmentType
+- operation: create_verified_access_group
+  other_required_args:
+  - VerifiedAccessInstanceId
+- operation: create_verified_access_instance
+  other_required_args: []
+- operation: create_verified_access_trust_provider
+  other_required_args:
+  - TrustProviderType
+  - PolicyReferenceName
+- operation: create_volume
+  other_required_args: []
+- operation: create_vpc
+  other_required_args: []
+- operation: create_vpc_block_public_access_exclusion
+  other_required_args:
+  - InternetGatewayExclusionMode
+- operation: create_vpc_encryption_control
+  other_required_args:
+  - VpcId
+- operation: create_vpc_endpoint
+  other_required_args:
+  - VpcId
+- operation: create_vpc_endpoint_connection_notification
+  other_required_args:
+  - ConnectionNotificationArn
+  - ConnectionEvents
+- operation: create_vpc_endpoint_service_configuration
+  other_required_args: []
+- operation: create_vpc_peering_connection
+  other_required_args:
+  - VpcId
+- operation: create_vpn_concentrator
+  other_required_args:
+  - Type
+- operation: create_vpn_connection
+  other_required_args:
+  - CustomerGatewayId
+  - Type
+- operation: create_vpn_gateway
+  other_required_args:
+  - Type
+- operation: delete_capacity_manager_data_export
+  other_required_args:
+  - CapacityManagerDataExportId
+- operation: delete_carrier_gateway
+  other_required_args:
+  - CarrierGatewayId
+- operation: delete_client_vpn_endpoint
+  other_required_args:
+  - ClientVpnEndpointId
+- operation: delete_client_vpn_route
+  other_required_args:
+  - ClientVpnEndpointId
+  - DestinationCidrBlock
+- operation: delete_coip_cidr
+  other_required_args:
+  - Cidr
+  - CoipPoolId
+- operation: delete_coip_pool
+  other_required_args:
+  - CoipPoolId
+- operation: delete_customer_gateway
+  other_required_args:
+  - CustomerGatewayId
+- operation: delete_dhcp_options
+  other_required_args:
+  - DhcpOptionsId
+- operation: delete_egress_only_internet_gateway
+  other_required_args:
+  - EgressOnlyInternetGatewayId
+- operation: delete_fleets
+  other_required_args:
+  - FleetIds
+  - TerminateInstances
+- operation: delete_flow_logs
+  other_required_args:
+  - FlowLogIds
+- operation: delete_fpga_image
+  other_required_args:
+  - FpgaImageId
+- operation: delete_image_usage_report
+  other_required_args:
+  - ReportId
+- operation: delete_instance_connect_endpoint
+  other_required_args:
+  - InstanceConnectEndpointId
+- operation: delete_instance_event_window
+  other_required_args:
+  - InstanceEventWindowId
+- operation: delete_internet_gateway
+  other_required_args:
+  - InternetGatewayId
+- operation: delete_ipam
+  other_required_args:
+  - IpamId
+- operation: delete_ipam_external_resource_verification_token
+  other_required_args:
+  - IpamExternalResourceVerificationTokenId
+- operation: delete_ipam_policy
+  other_required_args:
+  - IpamPolicyId
+- operation: delete_ipam_pool
+  other_required_args:
+  - IpamPoolId
+- operation: delete_ipam_prefix_list_resolver
+  other_required_args:
+  - IpamPrefixListResolverId
+- operation: delete_ipam_prefix_list_resolver_target
+  other_required_args:
+  - IpamPrefixListResolverTargetId
+- operation: delete_ipam_resource_discovery
+  other_required_args:
+  - IpamResourceDiscoveryId
+- operation: delete_ipam_scope
+  other_required_args:
+  - IpamScopeId
+- operation: delete_key_pair
+  other_required_args: []
+- operation: delete_launch_template
+  other_required_args: []
+- operation: delete_launch_template_versions
+  other_required_args:
+  - Versions
+- operation: delete_local_gateway_route
+  other_required_args:
+  - LocalGatewayRouteTableId
+- operation: delete_local_gateway_route_table
+  other_required_args:
+  - LocalGatewayRouteTableId
+- operation: delete_local_gateway_route_table_virtual_interface_group_association
+  other_required_args:
+  - LocalGatewayRouteTableVirtualInterfaceGroupAssociationId
+- operation: delete_local_gateway_route_table_vpc_association
+  other_required_args:
+  - LocalGatewayRouteTableVpcAssociationId
+- operation: delete_local_gateway_virtual_interface
+  other_required_args:
+  - LocalGatewayVirtualInterfaceId
+- operation: delete_local_gateway_virtual_interface_group
+  other_required_args:
+  - LocalGatewayVirtualInterfaceGroupId
+- operation: delete_managed_prefix_list
+  other_required_args:
+  - PrefixListId
+- operation: delete_nat_gateway
+  other_required_args:
+  - NatGatewayId
+- operation: delete_network_acl
+  other_required_args:
+  - NetworkAclId
+- operation: delete_network_acl_entry
+  other_required_args:
+  - NetworkAclId
+  - RuleNumber
+  - Egress
+- operation: delete_network_insights_access_scope
+  other_required_args:
+  - NetworkInsightsAccessScopeId
+- operation: delete_network_insights_access_scope_analysis
+  other_required_args:
+  - NetworkInsightsAccessScopeAnalysisId
+- operation: delete_network_insights_analysis
+  other_required_args:
+  - NetworkInsightsAnalysisId
+- operation: delete_network_insights_path
+  other_required_args:
+  - NetworkInsightsPathId
+- operation: delete_network_interface
+  other_required_args:
+  - NetworkInterfaceId
+- operation: delete_network_interface_permission
+  other_required_args:
+  - NetworkInterfacePermissionId
+- operation: delete_placement_group
+  other_required_args:
+  - GroupName
+- operation: delete_public_ipv4_pool
+  other_required_args:
+  - PoolId
+- operation: delete_queued_reserved_instances
+  other_required_args:
+  - ReservedInstancesIds
+- operation: delete_route
+  other_required_args:
+  - RouteTableId
+- operation: delete_route_server
+  other_required_args:
+  - RouteServerId
+- operation: delete_route_server_endpoint
+  other_required_args:
+  - RouteServerEndpointId
+- operation: delete_route_server_peer
+  other_required_args:
+  - RouteServerPeerId
+- operation: delete_route_table
+  other_required_args:
+  - RouteTableId
+- operation: delete_secondary_network
+  other_required_args:
+  - SecondaryNetworkId
+- operation: delete_secondary_subnet
+  other_required_args:
+  - SecondarySubnetId
+- operation: delete_security_group
+  other_required_args: []
+- operation: delete_snapshot
+  other_required_args:
+  - SnapshotId
+- operation: delete_spot_datafeed_subscription
+  other_required_args: []
+- operation: delete_subnet
+  other_required_args:
+  - SubnetId
+- operation: delete_subnet_cidr_reservation
+  other_required_args:
+  - SubnetCidrReservationId
+- operation: delete_tags
+  other_required_args:
+  - Resources
+- operation: delete_traffic_mirror_filter
+  other_required_args:
+  - TrafficMirrorFilterId
+- operation: delete_traffic_mirror_filter_rule
+  other_required_args:
+  - TrafficMirrorFilterRuleId
+- operation: delete_traffic_mirror_session
+  other_required_args:
+  - TrafficMirrorSessionId
+- operation: delete_traffic_mirror_target
+  other_required_args:
+  - TrafficMirrorTargetId
+- operation: delete_transit_gateway
+  other_required_args:
+  - TransitGatewayId
+- operation: delete_transit_gateway_client_vpn_attachment
+  other_required_args:
+  - TransitGatewayAttachmentId
+- operation: delete_transit_gateway_connect
+  other_required_args:
+  - TransitGatewayAttachmentId
+- operation: delete_transit_gateway_connect_peer
+  other_required_args:
+  - TransitGatewayConnectPeerId
+- operation: delete_transit_gateway_metering_policy
+  other_required_args:
+  - TransitGatewayMeteringPolicyId
+- operation: delete_transit_gateway_metering_policy_entry
+  other_required_args:
+  - TransitGatewayMeteringPolicyId
+  - PolicyRuleNumber
+- operation: delete_transit_gateway_multicast_domain
+  other_required_args:
+  - TransitGatewayMulticastDomainId
+- operation: delete_transit_gateway_peering_attachment
+  other_required_args:
+  - TransitGatewayAttachmentId
+- operation: delete_transit_gateway_policy_table
+  other_required_args:
+  - TransitGatewayPolicyTableId
+- operation: delete_transit_gateway_prefix_list_reference
+  other_required_args:
+  - TransitGatewayRouteTableId
+  - PrefixListId
+- operation: delete_transit_gateway_route
+  other_required_args:
+  - TransitGatewayRouteTableId
+  - DestinationCidrBlock
+- operation: delete_transit_gateway_route_table
+  other_required_args:
+  - TransitGatewayRouteTableId
+- operation: delete_transit_gateway_route_table_announcement
+  other_required_args:
+  - TransitGatewayRouteTableAnnouncementId
+- operation: delete_transit_gateway_vpc_attachment
+  other_required_args:
+  - TransitGatewayAttachmentId
+- operation: delete_verified_access_endpoint
+  other_required_args:
+  - VerifiedAccessEndpointId
+- operation: delete_verified_access_group
+  other_required_args:
+  - VerifiedAccessGroupId
+- operation: delete_verified_access_instance
+  other_required_args:
+  - VerifiedAccessInstanceId
+- operation: delete_verified_access_trust_provider
+  other_required_args:
+  - VerifiedAccessTrustProviderId
+- operation: delete_volume
+  other_required_args:
+  - VolumeId
+- operation: delete_vpc
+  other_required_args:
+  - VpcId
+- operation: delete_vpc_block_public_access_exclusion
+  other_required_args:
+  - ExclusionId
+- operation: delete_vpc_encryption_control
+  other_required_args:
+  - VpcEncryptionControlId
+- operation: delete_vpc_endpoint_connection_notifications
+  other_required_args:
+  - ConnectionNotificationIds
+- operation: delete_vpc_endpoint_service_configurations
+  other_required_args:
+  - ServiceIds
+- operation: delete_vpc_endpoints
+  other_required_args:
+  - VpcEndpointIds
+- operation: delete_vpc_peering_connection
+  other_required_args:
+  - VpcPeeringConnectionId
+- operation: delete_vpn_concentrator
+  other_required_args:
+  - VpnConcentratorId
+- operation: delete_vpn_connection
+  other_required_args:
+  - VpnConnectionId
+- operation: delete_vpn_gateway
+  other_required_args:
+  - VpnGatewayId
+- operation: deprovision_byoip_cidr
+  other_required_args:
+  - Cidr
+- operation: deprovision_ipam_byoasn
+  other_required_args:
+  - IpamId
+  - Asn
+- operation: deprovision_ipam_pool_cidr
+  other_required_args:
+  - IpamPoolId
+- operation: deprovision_public_ipv4_pool_cidr
+  other_required_args:
+  - PoolId
+  - Cidr
+- operation: deregister_image
+  other_required_args:
+  - ImageId
+- operation: deregister_instance_event_notification_attributes
+  other_required_args:
+  - InstanceTagAttribute
+- operation: deregister_transit_gateway_multicast_group_members
+  other_required_args: []
+- operation: deregister_transit_gateway_multicast_group_sources
+  other_required_args: []
+- operation: describe_account_attributes
+  other_required_args: []
+- operation: describe_account_vpc_encryption_control
+  other_required_args: []
+- operation: describe_address_transfers
+  other_required_args: []
+- operation: describe_addresses
+  other_required_args: []
+- operation: describe_addresses_attribute
+  other_required_args: []
+- operation: describe_aggregate_id_format
+  other_required_args: []
+- operation: describe_availability_zones
+  other_required_args: []
+- operation: describe_aws_network_performance_metric_subscriptions
+  other_required_args: []
+- operation: describe_bundle_tasks
+  other_required_args: []
+- operation: describe_byoip_cidrs
+  other_required_args:
+  - MaxResults
+- operation: describe_capacity_block_extension_history
+  other_required_args: []
+- operation: describe_capacity_block_extension_offerings
+  other_required_args:
+  - CapacityBlockExtensionDurationHours
+  - CapacityReservationId
+- operation: describe_capacity_block_offerings
+  other_required_args:
+  - CapacityDurationHours
+- operation: describe_capacity_block_status
+  other_required_args: []
+- operation: describe_capacity_blocks
+  other_required_args: []
+- operation: describe_capacity_manager_data_exports
+  other_required_args: []
+- operation: describe_capacity_reservation_billing_requests
+  other_required_args:
+  - Role
+- operation: describe_capacity_reservation_cancellation_quotes
+  other_required_args: []
+- operation: describe_capacity_reservation_fleets
+  other_required_args: []
+- operation: describe_capacity_reservation_topology
+  other_required_args: []
+- operation: describe_capacity_reservations
+  other_required_args: []
+- operation: describe_carrier_gateways
+  other_required_args: []
+- operation: describe_classic_link_instances
+  other_required_args: []
+- operation: describe_client_vpn_authorization_rules
+  other_required_args:
+  - ClientVpnEndpointId
+- operation: describe_client_vpn_connections
+  other_required_args:
+  - ClientVpnEndpointId
+- operation: describe_client_vpn_endpoints
+  other_required_args: []
+- operation: describe_client_vpn_routes
+  other_required_args:
+  - ClientVpnEndpointId
+- operation: describe_client_vpn_target_networks
+  other_required_args:
+  - ClientVpnEndpointId
+- operation: describe_coip_pools
+  other_required_args: []
+- operation: describe_conversion_tasks
+  other_required_args: []
+- operation: describe_customer_gateways
+  other_required_args: []
+- operation: describe_declarative_policies_reports
+  other_required_args: []
+- operation: describe_dhcp_options
+  other_required_args: []
+- operation: describe_egress_only_internet_gateways
+  other_required_args: []
+- operation: describe_elastic_gpus
+  other_required_args: []
+- operation: describe_export_image_tasks
+  other_required_args: []
+- operation: describe_fast_launch_images
+  other_required_args: []
+- operation: describe_fast_snapshot_restores
+  other_required_args: []
+- operation: describe_fleet_history
+  other_required_args:
+  - FleetId
+  - StartTime
+- operation: describe_fleet_instances
+  other_required_args:
+  - FleetId
+- operation: describe_fleets
+  other_required_args: []
+- operation: describe_flow_logs
+  other_required_args: []
+- operation: describe_fpga_image_attribute
+  other_required_args:
+  - FpgaImageId
+  - Attribute
+- operation: describe_fpga_images
+  other_required_args: []
+- operation: describe_image_attribute
+  other_required_args:
+  - Attribute
+  - ImageId
+- operation: describe_image_references
+  other_required_args:
+  - ImageIds
+- operation: describe_image_usage_report_entries
+  other_required_args: []
+- operation: describe_image_usage_reports
+  other_required_args: []
+- operation: describe_images
+  other_required_args: []
+- operation: describe_import_image_tasks
+  other_required_args: []
+- operation: describe_import_snapshot_tasks
+  other_required_args: []
+- operation: describe_instance_attribute
+  other_required_args:
+  - InstanceId
+  - Attribute
+- operation: describe_instance_connect_endpoints
+  other_required_args: []
+- operation: describe_instance_credit_specifications
+  other_required_args: []
+- operation: describe_instance_event_notification_attributes
+  other_required_args: []
+- operation: describe_instance_event_windows
+  other_required_args: []
+- operation: describe_instance_image_metadata
+  other_required_args: []
+- operation: describe_instance_sql_ha_history_states
+  other_required_args: []
+- operation: describe_instance_sql_ha_states
+  other_required_args: []
+- operation: describe_instance_status
+  other_required_args: []
+- operation: describe_instance_topology
+  other_required_args: []
+- operation: describe_instance_type_offerings
+  other_required_args: []
+- operation: describe_instance_types
+  other_required_args: []
+- operation: describe_instances
+  other_required_args: []
+- operation: describe_internet_gateways
+  other_required_args: []
+- operation: describe_ipam_byoasn
+  other_required_args: []
+- operation: describe_ipam_external_resource_verification_tokens
+  other_required_args: []
+- operation: describe_ipam_policies
+  other_required_args: []
+- operation: describe_ipam_pool_allocations
+  other_required_args: []
+- operation: describe_ipam_pools
+  other_required_args: []
+- operation: describe_ipam_prefix_list_resolver_targets
+  other_required_args: []
+- operation: describe_ipam_prefix_list_resolvers
+  other_required_args: []
+- operation: describe_ipam_resource_discoveries
+  other_required_args: []
+- operation: describe_ipam_resource_discovery_associations
+  other_required_args: []
+- operation: describe_ipam_scopes
+  other_required_args: []
+- operation: describe_ipams
+  other_required_args: []
+- operation: describe_ipv6_pools
+  other_required_args: []
+- operation: describe_key_pairs
+  other_required_args: []
+- operation: describe_launch_template_versions
+  other_required_args: []
+- operation: describe_launch_templates
+  other_required_args: []
+- operation: describe_local_gateway_route_table_virtual_interface_group_associations
+  other_required_args: []
+- operation: describe_local_gateway_route_table_vpc_associations
+  other_required_args: []
+- operation: describe_local_gateway_route_tables
+  other_required_args: []
+- operation: describe_local_gateway_virtual_interface_groups
+  other_required_args: []
+- operation: describe_local_gateway_virtual_interfaces
+  other_required_args: []
+- operation: describe_local_gateways
+  other_required_args: []
+- operation: describe_locked_snapshots
+  other_required_args: []
+- operation: describe_mac_modification_tasks
+  other_required_args: []
+- operation: describe_managed_prefix_lists
+  other_required_args: []
+- operation: describe_moving_addresses
+  other_required_args: []
+- operation: describe_nat_gateways
+  other_required_args: []
+- operation: describe_network_acls
+  other_required_args: []
+- operation: describe_network_insights_access_scope_analyses
+  other_required_args: []
+- operation: describe_network_insights_access_scopes
+  other_required_args: []
+- operation: describe_network_insights_analyses
+  other_required_args: []
+- operation: describe_network_insights_paths
+  other_required_args: []
+- operation: describe_network_interface_attribute
+  other_required_args:
+  - NetworkInterfaceId
+- operation: describe_network_interfaces
+  other_required_args: []
+- operation: describe_outpost_lags
+  other_required_args: []
+- operation: describe_placement_groups
+  other_required_args: []
+- operation: describe_prefix_lists
+  other_required_args: []
+- operation: describe_principal_id_format
+  other_required_args: []
+- operation: describe_regions
+  other_required_args: []
+- operation: describe_replace_root_volume_tasks
+  other_required_args: []
+- operation: describe_reserved_instances
+  other_required_args: []
+- operation: describe_reserved_instances_offerings
+  other_required_args: []
+- operation: describe_route_server_endpoints
+  other_required_args: []
+- operation: describe_route_server_peers
+  other_required_args: []
+- operation: describe_route_servers
+  other_required_args: []
+- operation: describe_route_tables
+  other_required_args: []
+- operation: describe_scheduled_instance_availability
+  other_required_args:
+  - FirstSlotStartTimeRange
+  - Recurrence
+- operation: describe_scheduled_instances
+  other_required_args: []
+- operation: describe_secondary_interfaces
+  other_required_args: []
+- operation: describe_secondary_networks
+  other_required_args: []
+- operation: describe_secondary_subnets
+  other_required_args: []
+- operation: describe_security_group_references
+  other_required_args:
+  - GroupId
+- operation: describe_security_group_rules
+  other_required_args: []
+- operation: describe_security_group_vpc_associations
+  other_required_args: []
+- operation: describe_security_groups
+  other_required_args: []
+- operation: describe_service_link_virtual_interfaces
+  other_required_args: []
+- operation: describe_snapshot_attribute
+  other_required_args:
+  - Attribute
+  - SnapshotId
+- operation: describe_snapshot_tier_status
+  other_required_args: []
+- operation: describe_snapshots
+  other_required_args: []
+- operation: describe_spot_datafeed_subscription
+  other_required_args: []
+- operation: describe_spot_fleet_instances
+  other_required_args:
+  - SpotFleetRequestId
+- operation: describe_spot_fleet_request_history
+  other_required_args:
+  - SpotFleetRequestId
+  - StartTime
+- operation: describe_spot_fleet_requests
+  other_required_args: []
+- operation: describe_spot_instance_requests
+  other_required_args: []
+- operation: describe_spot_price_history
+  other_required_args: []
+- operation: describe_stale_security_groups
+  other_required_args:
+  - VpcId
+- operation: describe_store_image_tasks
+  other_required_args: []
+- operation: describe_subnets
+  other_required_args: []
+- operation: describe_tags
+  other_required_args: []
+- operation: describe_traffic_mirror_filter_rules
+  other_required_args: []
+- operation: describe_traffic_mirror_filters
+  other_required_args: []
+- operation: describe_traffic_mirror_sessions
+  other_required_args: []
+- operation: describe_traffic_mirror_targets
+  other_required_args: []
+- operation: describe_transit_gateway_attachments
+  other_required_args: []
+- operation: describe_transit_gateway_connect_peers
+  other_required_args: []
+- operation: describe_transit_gateway_connects
+  other_required_args: []
+- operation: describe_transit_gateway_metering_policies
+  other_required_args: []
+- operation: describe_transit_gateway_multicast_domains
+  other_required_args: []
+- operation: describe_transit_gateway_peering_attachments
+  other_required_args: []
+- operation: describe_transit_gateway_policy_tables
+  other_required_args: []
+- operation: describe_transit_gateway_route_table_announcements
+  other_required_args: []
+- operation: describe_transit_gateway_route_tables
+  other_required_args: []
+- operation: describe_transit_gateway_vpc_attachments
+  other_required_args: []
+- operation: describe_transit_gateways
+  other_required_args: []
+- operation: describe_trunk_interface_associations
+  other_required_args: []
+- operation: describe_verified_access_endpoints
+  other_required_args: []
+- operation: describe_verified_access_groups
+  other_required_args: []
+- operation: describe_verified_access_instance_logging_configurations
+  other_required_args: []
+- operation: describe_verified_access_instances
+  other_required_args: []
+- operation: describe_verified_access_trust_providers
+  other_required_args: []
+- operation: describe_volume_attribute
+  other_required_args:
+  - Attribute
+  - VolumeId
+- operation: describe_volume_status
+  other_required_args: []
+- operation: describe_volumes
+  other_required_args: []
+- operation: describe_volumes_modifications
+  other_required_args: []
+- operation: describe_vpc_attribute
+  other_required_args:
+  - Attribute
+  - VpcId
+- operation: describe_vpc_block_public_access_exclusions
+  other_required_args: []
+- operation: describe_vpc_block_public_access_options
+  other_required_args: []
+- operation: describe_vpc_classic_link
+  other_required_args: []
+- operation: describe_vpc_encryption_controls
+  other_required_args: []
+- operation: describe_vpc_endpoint_associations
+  other_required_args: []
+- operation: describe_vpc_endpoint_connection_notifications
+  other_required_args: []
+- operation: describe_vpc_endpoint_connections
+  other_required_args: []
+- operation: describe_vpc_endpoint_service_configurations
+  other_required_args: []
+- operation: describe_vpc_endpoint_service_permissions
+  other_required_args:
+  - ServiceId
+- operation: describe_vpc_endpoint_services
+  other_required_args: []
+- operation: describe_vpc_endpoints
+  other_required_args: []
+- operation: describe_vpc_peering_connections
+  other_required_args: []
+- operation: describe_vpcs
+  other_required_args: []
+- operation: describe_vpn_concentrators
+  other_required_args: []
+- operation: describe_vpn_connections
+  other_required_args: []
+- operation: describe_vpn_gateways
+  other_required_args: []
+- operation: detach_classic_link_vpc
+  other_required_args:
+  - InstanceId
+  - VpcId
+- operation: detach_image_watermark
+  other_required_args:
+  - ImageId
+  - WatermarkKey
+- operation: detach_internet_gateway
+  other_required_args:
+  - InternetGatewayId
+  - VpcId
+- operation: detach_network_interface
+  other_required_args:
+  - AttachmentId
+- operation: detach_verified_access_trust_provider
+  other_required_args:
+  - VerifiedAccessInstanceId
+  - VerifiedAccessTrustProviderId
+- operation: detach_volume
+  other_required_args:
+  - VolumeId
+- operation: detach_vpn_gateway
+  other_required_args:
+  - VpcId
+  - VpnGatewayId
+- operation: disable_address_transfer
+  other_required_args:
+  - AllocationId
+- operation: disable_allowed_images_settings
+  other_required_args: []
+- operation: disable_aws_network_performance_metric_subscription
+  other_required_args: []
+- operation: disable_capacity_manager
+  other_required_args: []
+- operation: disable_ebs_encryption_by_default
+  other_required_args: []
+- operation: disable_fast_launch
+  other_required_args:
+  - ImageId
+- operation: disable_fast_snapshot_restores
+  other_required_args:
+  - SourceSnapshotIds
+- operation: disable_image
+  other_required_args:
+  - ImageId
+- operation: disable_image_block_public_access
+  other_required_args: []
+- operation: disable_image_deprecation
+  other_required_args:
+  - ImageId
+- operation: disable_image_deregistration_protection
+  other_required_args:
+  - ImageId
+- operation: disable_instance_sql_ha_standby_detections
+  other_required_args:
+  - InstanceIds
+- operation: disable_ipam_organization_admin_account
+  other_required_args:
+  - DelegatedAdminAccountId
+- operation: disable_ipam_policy
+  other_required_args:
+  - IpamPolicyId
+- operation: disable_route_server_propagation
+  other_required_args:
+  - RouteServerId
+  - RouteTableId
+- operation: disable_serial_console_access
+  other_required_args: []
+- operation: disable_snapshot_block_public_access
+  other_required_args: []
+- operation: disable_transit_gateway_route_table_propagation
+  other_required_args:
+  - TransitGatewayRouteTableId
+- operation: disable_vgw_route_propagation
+  other_required_args:
+  - GatewayId
+  - RouteTableId
+- operation: disable_vpc_classic_link
+  other_required_args:
+  - VpcId
+- operation: disassociate_address
+  other_required_args: []
+- operation: disassociate_capacity_reservation_billing_owner
+  other_required_args:
+  - CapacityReservationId
+  - UnusedReservationBillingOwnerId
+- operation: disassociate_client_vpn_target_network
+  other_required_args:
+  - ClientVpnEndpointId
+  - AssociationId
+- operation: disassociate_enclave_certificate_iam_role
+  other_required_args:
+  - CertificateArn
+  - RoleArn
+- operation: disassociate_instance_event_window
+  other_required_args:
+  - InstanceEventWindowId
+  - AssociationTarget
+- operation: disassociate_ipam_byoasn
+  other_required_args:
+  - Asn
+  - Cidr
+- operation: disassociate_ipam_resource_discovery
+  other_required_args:
+  - IpamResourceDiscoveryAssociationId
+- operation: disassociate_nat_gateway_address
+  other_required_args:
+  - NatGatewayId
+  - AssociationIds
+- operation: disassociate_route_server
+  other_required_args:
+  - RouteServerId
+  - VpcId
+- operation: disassociate_route_table
+  other_required_args:
+  - AssociationId
+- operation: disassociate_security_group_vpc
+  other_required_args:
+  - GroupId
+  - VpcId
+- operation: disassociate_transit_gateway_multicast_domain
+  other_required_args:
+  - TransitGatewayMulticastDomainId
+  - TransitGatewayAttachmentId
+  - SubnetIds
+- operation: disassociate_transit_gateway_policy_table
+  other_required_args:
+  - TransitGatewayPolicyTableId
+  - TransitGatewayAttachmentId
+- operation: disassociate_transit_gateway_route_table
+  other_required_args:
+  - TransitGatewayRouteTableId
+  - TransitGatewayAttachmentId
+- operation: disassociate_trunk_interface
+  other_required_args:
+  - AssociationId
+- operation: enable_address_transfer
+  other_required_args:
+  - AllocationId
+  - TransferAccountId
+- operation: enable_allowed_images_settings
+  other_required_args:
+  - AllowedImagesSettingsState
+- operation: enable_aws_network_performance_metric_subscription
+  other_required_args: []
+- operation: enable_capacity_manager
+  other_required_args: []
+- operation: enable_ebs_encryption_by_default
+  other_required_args: []
+- operation: enable_fast_launch
+  other_required_args:
+  - ImageId
+- operation: enable_fast_snapshot_restores
+  other_required_args:
+  - SourceSnapshotIds
+- operation: enable_image
+  other_required_args:
+  - ImageId
+- operation: enable_image_block_public_access
+  other_required_args:
+  - ImageBlockPublicAccessState
+- operation: enable_image_deprecation
+  other_required_args:
+  - ImageId
+  - DeprecateAt
+- operation: enable_image_deregistration_protection
+  other_required_args:
+  - ImageId
+- operation: enable_instance_sql_ha_standby_detections
+  other_required_args:
+  - InstanceIds
+- operation: enable_ipam_organization_admin_account
+  other_required_args:
+  - DelegatedAdminAccountId
+- operation: enable_ipam_policy
+  other_required_args:
+  - IpamPolicyId
+- operation: enable_reachability_analyzer_organization_sharing
+  other_required_args: []
+- operation: enable_route_server_propagation
+  other_required_args:
+  - RouteServerId
+  - RouteTableId
+- operation: enable_serial_console_access
+  other_required_args: []
+- operation: enable_snapshot_block_public_access
+  other_required_args:
+  - State
+- operation: enable_transit_gateway_route_table_propagation
+  other_required_args:
+  - TransitGatewayRouteTableId
+- operation: enable_vgw_route_propagation
+  other_required_args:
+  - GatewayId
+  - RouteTableId
+- operation: enable_volume_io
+  other_required_args:
+  - VolumeId
+- operation: enable_vpc_classic_link
+  other_required_args:
+  - VpcId
+- operation: export_client_vpn_client_certificate_revocation_list
+  other_required_args:
+  - ClientVpnEndpointId
+- operation: export_client_vpn_client_configuration
+  other_required_args:
+  - ClientVpnEndpointId
+- operation: export_image
+  other_required_args:
+  - DiskImageFormat
+  - ImageId
+  - S3ExportLocation
+- operation: export_transit_gateway_routes
+  other_required_args:
+  - TransitGatewayRouteTableId
+  - S3Bucket
+- operation: export_verified_access_instance_client_configuration
+  other_required_args:
+  - VerifiedAccessInstanceId
+- operation: get_active_vpn_tunnel_status
+  other_required_args:
+  - VpnConnectionId
+  - VpnTunnelOutsideIpAddress
+- operation: get_allowed_images_settings
+  other_required_args: []
+- operation: get_associated_enclave_certificate_iam_roles
+  other_required_args:
+  - CertificateArn
+- operation: get_associated_ipv6_pool_cidrs
+  other_required_args:
+  - PoolId
+- operation: get_aws_network_performance_data
+  other_required_args: []
+- operation: get_capacity_manager_attributes
+  other_required_args: []
+- operation: get_capacity_manager_metric_data
+  other_required_args:
+  - MetricNames
+  - StartTime
+  - EndTime
+  - Period
+- operation: get_capacity_manager_metric_dimensions
+  other_required_args:
+  - GroupBy
+  - StartTime
+  - EndTime
+  - MetricNames
+- operation: get_capacity_manager_monitored_tag_keys
+  other_required_args: []
+- operation: get_capacity_reservation_usage
+  other_required_args:
+  - CapacityReservationId
+- operation: get_coip_pool_usage
+  other_required_args:
+  - PoolId
+- operation: get_console_output
+  other_required_args:
+  - InstanceId
+- operation: get_console_screenshot
+  other_required_args:
+  - InstanceId
+- operation: get_declarative_policies_report_summary
+  other_required_args:
+  - ReportId
+- operation: get_default_credit_specification
+  other_required_args:
+  - InstanceFamily
+- operation: get_ebs_default_kms_key_id
+  other_required_args: []
+- operation: get_ebs_encryption_by_default
+  other_required_args: []
+- operation: get_enabled_ipam_policy
+  other_required_args: []
+- operation: get_flow_logs_integration_template
+  other_required_args:
+  - FlowLogId
+  - ConfigDeliveryS3DestinationArn
+  - IntegrateServices
+- operation: get_groups_for_capacity_reservation
+  other_required_args:
+  - CapacityReservationId
+- operation: get_image_ancestry
+  other_required_args:
+  - ImageId
+- operation: get_image_block_public_access_state
+  other_required_args: []
+- operation: get_instance_metadata_defaults
+  other_required_args: []
+- operation: get_instance_tpm_ek_pub
+  other_required_args:
+  - InstanceId
+  - KeyType
+  - KeyFormat
+- operation: get_instance_types_from_instance_requirements
+  other_required_args:
+  - ArchitectureTypes
+  - VirtualizationTypes
+  - InstanceRequirements
+- operation: get_instance_uefi_data
+  other_required_args:
+  - InstanceId
+- operation: get_ipam_address_history
+  other_required_args:
+  - Cidr
+  - IpamScopeId
+- operation: get_ipam_discovered_accounts
+  other_required_args:
+  - IpamResourceDiscoveryId
+  - DiscoveryRegion
+- operation: get_ipam_discovered_public_addresses
+  other_required_args:
+  - IpamResourceDiscoveryId
+  - AddressRegion
+- operation: get_ipam_discovered_resource_cidrs
+  other_required_args:
+  - IpamResourceDiscoveryId
+  - ResourceRegion
+- operation: get_ipam_policy_allocation_rules
+  other_required_args:
+  - IpamPolicyId
+- operation: get_ipam_policy_organization_targets
+  other_required_args:
+  - IpamPolicyId
+- operation: get_ipam_pool_allocations
+  other_required_args:
+  - IpamPoolId
+- operation: get_ipam_pool_cidrs
+  other_required_args:
+  - IpamPoolId
+- operation: get_ipam_prefix_list_resolver_rules
+  other_required_args:
+  - IpamPrefixListResolverId
+- operation: get_ipam_prefix_list_resolver_version_entries
+  other_required_args:
+  - IpamPrefixListResolverId
+  - IpamPrefixListResolverVersion
+- operation: get_ipam_prefix_list_resolver_versions
+  other_required_args:
+  - IpamPrefixListResolverId
+- operation: get_ipam_resource_cidrs
+  other_required_args:
+  - IpamScopeId
+- operation: get_launch_template_data
+  other_required_args:
+  - InstanceId
+- operation: get_managed_prefix_list_associations
+  other_required_args:
+  - PrefixListId
+- operation: get_managed_prefix_list_entries
+  other_required_args:
+  - PrefixListId
+- operation: get_managed_resource_visibility
+  other_required_args: []
+- operation: get_network_insights_access_scope_analysis_findings
+  other_required_args:
+  - NetworkInsightsAccessScopeAnalysisId
+- operation: get_network_insights_access_scope_content
+  other_required_args:
+  - NetworkInsightsAccessScopeId
+- operation: get_password_data
+  other_required_args:
+  - InstanceId
+- operation: get_reserved_instances_exchange_quote
+  other_required_args:
+  - ReservedInstanceIds
+- operation: get_route_server_associations
+  other_required_args:
+  - RouteServerId
+- operation: get_route_server_propagations
+  other_required_args:
+  - RouteServerId
+- operation: get_route_server_routing_database
+  other_required_args:
+  - RouteServerId
+- operation: get_security_groups_for_vpc
+  other_required_args:
+  - VpcId
+- operation: get_serial_console_access_status
+  other_required_args: []
+- operation: get_snapshot_block_public_access_state
+  other_required_args: []
+- operation: get_spot_placement_scores
+  other_required_args:
+  - TargetCapacity
+- operation: get_subnet_cidr_reservations
+  other_required_args:
+  - SubnetId
+- operation: get_transit_gateway_attachment_propagations
+  other_required_args:
+  - TransitGatewayAttachmentId
+- operation: get_transit_gateway_metering_policy_entries
+  other_required_args:
+  - TransitGatewayMeteringPolicyId
+- operation: get_transit_gateway_multicast_domain_associations
+  other_required_args:
+  - TransitGatewayMulticastDomainId
+- operation: get_transit_gateway_policy_table_associations
+  other_required_args:
+  - TransitGatewayPolicyTableId
+- operation: get_transit_gateway_policy_table_entries
+  other_required_args:
+  - TransitGatewayPolicyTableId
+- operation: get_transit_gateway_prefix_list_references
+  other_required_args:
+  - TransitGatewayRouteTableId
+- operation: get_transit_gateway_route_table_associations
+  other_required_args:
+  - TransitGatewayRouteTableId
+- operation: get_transit_gateway_route_table_propagations
+  other_required_args:
+  - TransitGatewayRouteTableId
+- operation: get_verified_access_endpoint_policy
+  other_required_args:
+  - VerifiedAccessEndpointId
+- operation: get_verified_access_endpoint_targets
+  other_required_args:
+  - VerifiedAccessEndpointId
+- operation: get_verified_access_group_policy
+  other_required_args:
+  - VerifiedAccessGroupId
+- operation: get_vpc_resources_blocking_encryption_enforcement
+  other_required_args:
+  - VpcId
+- operation: get_vpn_connection_device_sample_configuration
+  other_required_args:
+  - VpnConnectionId
+  - VpnConnectionDeviceTypeId
+- operation: get_vpn_connection_device_types
+  other_required_args: []
+- operation: get_vpn_tunnel_replacement_status
+  other_required_args:
+  - VpnConnectionId
+  - VpnTunnelOutsideIpAddress
+- operation: import_client_vpn_client_certificate_revocation_list
+  other_required_args:
+  - ClientVpnEndpointId
+  - CertificateRevocationList
+- operation: import_image
+  other_required_args: []
+- operation: import_instance
+  other_required_args:
+  - Platform
+- operation: import_key_pair
+  other_required_args:
+  - KeyName
+  - PublicKeyMaterial
+- operation: import_snapshot
+  other_required_args: []
+- operation: import_volume
+  other_required_args:
+  - Image
+  - Volume
+- operation: list_images_in_recycle_bin
+  other_required_args: []
+- operation: list_snapshots_in_recycle_bin
+  other_required_args: []
+- operation: list_volumes_in_recycle_bin
+  other_required_args: []
+- operation: lock_snapshot
+  other_required_args:
+  - SnapshotId
+  - LockMode
+- operation: modify_account_vpc_encryption_control
+  other_required_args: []
+- operation: modify_address_attribute
+  other_required_args:
+  - AllocationId
+- operation: modify_availability_zone_group
+  other_required_args:
+  - GroupName
+  - OptInStatus
+- operation: modify_capacity_reservation
+  other_required_args:
+  - CapacityReservationId
+- operation: modify_capacity_reservation_fleet
+  other_required_args:
+  - CapacityReservationFleetId
+- operation: modify_client_vpn_endpoint
+  other_required_args:
+  - ClientVpnEndpointId
+- operation: modify_default_credit_specification
+  other_required_args:
+  - InstanceFamily
+  - CpuCredits
+- operation: modify_ebs_default_kms_key_id
+  other_required_args:
+  - KmsKeyId
+- operation: modify_fleet
+  other_required_args:
+  - FleetId
+- operation: modify_fpga_image_attribute
+  other_required_args:
+  - FpgaImageId
+- operation: modify_image_attribute
+  other_required_args:
+  - ImageId
+- operation: modify_instance_attribute
+  other_required_args:
+  - InstanceId
+- operation: modify_instance_capacity_reservation_attributes
+  other_required_args:
+  - InstanceId
+  - CapacityReservationSpecification
+- operation: modify_instance_connect_endpoint
+  other_required_args:
+  - InstanceConnectEndpointId
+- operation: modify_instance_cpu_options
+  other_required_args:
+  - InstanceId
+- operation: modify_instance_credit_specification
+  other_required_args:
+  - InstanceCreditSpecifications
+- operation: modify_instance_event_start_time
+  other_required_args:
+  - InstanceId
+  - InstanceEventId
+  - NotBefore
+- operation: modify_instance_event_window
+  other_required_args:
+  - InstanceEventWindowId
+- operation: modify_instance_maintenance_options
+  other_required_args:
+  - InstanceId
+- operation: modify_instance_metadata_defaults
+  other_required_args: []
+- operation: modify_instance_metadata_options
+  other_required_args:
+  - InstanceId
+- operation: modify_instance_network_performance_options
+  other_required_args:
+  - InstanceId
+  - BandwidthWeighting
+- operation: modify_ipam
+  other_required_args:
+  - IpamId
+- operation: modify_ipam_policy_allocation_rules
+  other_required_args:
+  - IpamPolicyId
+  - Locale
+  - ResourceType
+- operation: modify_ipam_pool
+  other_required_args:
+  - IpamPoolId
+- operation: modify_ipam_pool_allocation
+  other_required_args:
+  - IpamPoolAllocationId
+- operation: modify_ipam_prefix_list_resolver
+  other_required_args:
+  - IpamPrefixListResolverId
+- operation: modify_ipam_prefix_list_resolver_target
+  other_required_args:
+  - IpamPrefixListResolverTargetId
+- operation: modify_ipam_resource_cidr
+  other_required_args:
+  - ResourceId
+  - ResourceCidr
+  - ResourceRegion
+  - CurrentIpamScopeId
+  - Monitored
+- operation: modify_ipam_resource_discovery
+  other_required_args:
+  - IpamResourceDiscoveryId
+- operation: modify_ipam_scope
+  other_required_args:
+  - IpamScopeId
+- operation: modify_launch_template
+  other_required_args: []
+- operation: modify_local_gateway_route
+  other_required_args:
+  - LocalGatewayRouteTableId
+- operation: modify_managed_prefix_list
+  other_required_args:
+  - PrefixListId
+- operation: modify_managed_resource_visibility
+  other_required_args:
+  - DefaultVisibility
+- operation: modify_network_interface_attribute
+  other_required_args:
+  - NetworkInterfaceId
+- operation: modify_private_dns_name_options
+  other_required_args:
+  - InstanceId
+- operation: modify_public_ip_dns_name_options
+  other_required_args:
+  - NetworkInterfaceId
+  - HostnameType
+- operation: modify_route_server
+  other_required_args:
+  - RouteServerId
+- operation: modify_security_group_rules
+  other_required_args:
+  - GroupId
+  - SecurityGroupRules
+- operation: modify_snapshot_attribute
+  other_required_args:
+  - SnapshotId
+- operation: modify_snapshot_tier
+  other_required_args:
+  - SnapshotId
+- operation: modify_traffic_mirror_filter_network_services
+  other_required_args:
+  - TrafficMirrorFilterId
+- operation: modify_traffic_mirror_filter_rule
+  other_required_args:
+  - TrafficMirrorFilterRuleId
+- operation: modify_traffic_mirror_session
+  other_required_args:
+  - TrafficMirrorSessionId
+- operation: modify_transit_gateway
+  other_required_args:
+  - TransitGatewayId
+- operation: modify_transit_gateway_metering_policy
+  other_required_args:
+  - TransitGatewayMeteringPolicyId
+- operation: modify_transit_gateway_prefix_list_reference
+  other_required_args:
+  - TransitGatewayRouteTableId
+  - PrefixListId
+- operation: modify_transit_gateway_vpc_attachment
+  other_required_args:
+  - TransitGatewayAttachmentId
+- operation: modify_verified_access_endpoint
+  other_required_args:
+  - VerifiedAccessEndpointId
+- operation: modify_verified_access_endpoint_policy
+  other_required_args:
+  - VerifiedAccessEndpointId
+- operation: modify_verified_access_group
+  other_required_args:
+  - VerifiedAccessGroupId
+- operation: modify_verified_access_group_policy
+  other_required_args:
+  - VerifiedAccessGroupId
+- operation: modify_verified_access_instance
+  other_required_args:
+  - VerifiedAccessInstanceId
+- operation: modify_verified_access_instance_logging_configuration
+  other_required_args:
+  - VerifiedAccessInstanceId
+  - AccessLogs
+- operation: modify_verified_access_trust_provider
+  other_required_args:
+  - VerifiedAccessTrustProviderId
+- operation: modify_volume
+  other_required_args:
+  - VolumeId
+- operation: modify_volume_attribute
+  other_required_args:
+  - VolumeId
+- operation: modify_vpc_block_public_access_exclusion
+  other_required_args:
+  - ExclusionId
+  - InternetGatewayExclusionMode
+- operation: modify_vpc_block_public_access_options
+  other_required_args:
+  - InternetGatewayBlockMode
+- operation: modify_vpc_encryption_control
+  other_required_args:
+  - VpcEncryptionControlId
+- operation: modify_vpc_endpoint
+  other_required_args:
+  - VpcEndpointId
+- operation: modify_vpc_endpoint_connection_notification
+  other_required_args:
+  - ConnectionNotificationId
+- operation: modify_vpc_endpoint_payer_responsibility
+  other_required_args:
+  - VpcEndpointId
+  - PayerResponsibility
+  - Scope
+- operation: modify_vpc_endpoint_service_configuration
+  other_required_args:
+  - ServiceId
+- operation: modify_vpc_endpoint_service_payer_responsibility
+  other_required_args:
+  - ServiceId
+  - PayerResponsibility
+- operation: modify_vpc_endpoint_service_permissions
+  other_required_args:
+  - ServiceId
+- operation: modify_vpc_peering_connection_options
+  other_required_args:
+  - VpcPeeringConnectionId
+- operation: modify_vpc_tenancy
+  other_required_args:
+  - VpcId
+  - InstanceTenancy
+- operation: modify_vpn_connection
+  other_required_args:
+  - VpnConnectionId
+- operation: modify_vpn_connection_options
+  other_required_args:
+  - VpnConnectionId
+- operation: modify_vpn_tunnel_certificate
+  other_required_args:
+  - VpnConnectionId
+  - VpnTunnelOutsideIpAddress
+- operation: modify_vpn_tunnel_options
+  other_required_args:
+  - VpnConnectionId
+  - VpnTunnelOutsideIpAddress
+  - TunnelOptions
+- operation: monitor_instances
+  other_required_args:
+  - InstanceIds
+- operation: move_address_to_vpc
+  other_required_args:
+  - PublicIp
+- operation: move_byoip_cidr_to_ipam
+  other_required_args:
+  - Cidr
+  - IpamPoolId
+  - IpamPoolOwner
+- operation: move_capacity_reservation_instances
+  other_required_args:
+  - SourceCapacityReservationId
+  - DestinationCapacityReservationId
+  - InstanceCount
+- operation: provision_byoip_cidr
+  other_required_args:
+  - Cidr
+- operation: provision_ipam_byoasn
+  other_required_args:
+  - IpamId
+  - Asn
+  - AsnAuthorizationContext
+- operation: provision_ipam_pool_cidr
+  other_required_args:
+  - IpamPoolId
+- operation: provision_public_ipv4_pool_cidr
+  other_required_args:
+  - IpamPoolId
+  - PoolId
+  - NetmaskLength
+- operation: purchase_capacity_block
+  other_required_args:
+  - CapacityBlockOfferingId
+  - InstancePlatform
+- operation: purchase_capacity_block_extension
+  other_required_args:
+  - CapacityBlockExtensionOfferingId
+  - CapacityReservationId
+- operation: purchase_reserved_instances_offering
+  other_required_args:
+  - InstanceCount
+  - ReservedInstancesOfferingId
+- operation: purchase_scheduled_instances
+  other_required_args:
+  - PurchaseRequests
+- operation: reboot_instances
+  other_required_args:
+  - InstanceIds
+- operation: register_image
+  other_required_args:
+  - Name
+- operation: register_instance_event_notification_attributes
+  other_required_args:
+  - InstanceTagAttribute
+- operation: register_transit_gateway_multicast_group_members
+  other_required_args:
+  - TransitGatewayMulticastDomainId
+  - NetworkInterfaceIds
+- operation: register_transit_gateway_multicast_group_sources
+  other_required_args:
+  - TransitGatewayMulticastDomainId
+  - NetworkInterfaceIds
+- operation: reject_capacity_reservation_billing_ownership
+  other_required_args:
+  - CapacityReservationId
+- operation: reject_transit_gateway_client_vpn_attachment
+  other_required_args:
+  - TransitGatewayAttachmentId
+- operation: reject_transit_gateway_multicast_domain_associations
+  other_required_args: []
+- operation: reject_transit_gateway_peering_attachment
+  other_required_args:
+  - TransitGatewayAttachmentId
+- operation: reject_transit_gateway_vpc_attachment
+  other_required_args:
+  - TransitGatewayAttachmentId
+- operation: reject_vpc_endpoint_connections
+  other_required_args:
+  - ServiceId
+  - VpcEndpointIds
+- operation: reject_vpc_peering_connection
+  other_required_args:
+  - VpcPeeringConnectionId
+- operation: release_address
+  other_required_args: []
+- operation: release_ipam_pool_allocation
+  other_required_args:
+  - IpamPoolId
+  - Cidr
+  - IpamPoolAllocationId
+- operation: replace_image_criteria_in_allowed_images_settings
+  other_required_args: []
+- operation: replace_network_acl_association
+  other_required_args:
+  - AssociationId
+  - NetworkAclId
+- operation: replace_network_acl_entry
+  other_required_args:
+  - NetworkAclId
+  - RuleNumber
+  - Protocol
+  - RuleAction
+  - Egress
+- operation: replace_route
+  other_required_args:
+  - RouteTableId
+- operation: replace_route_table_association
+  other_required_args:
+  - AssociationId
+  - RouteTableId
+- operation: replace_transit_gateway_route
+  other_required_args:
+  - DestinationCidrBlock
+  - TransitGatewayRouteTableId
+- operation: replace_vpn_tunnel
+  other_required_args:
+  - VpnConnectionId
+  - VpnTunnelOutsideIpAddress
+- operation: report_instance_status
+  other_required_args:
+  - Instances
+  - Status
+  - ReasonCodes
+- operation: request_spot_fleet
+  other_required_args:
+  - SpotFleetRequestConfig
+- operation: request_spot_instances
+  other_required_args: []
+- operation: reset_address_attribute
+  other_required_args:
+  - AllocationId
+  - Attribute
+- operation: reset_ebs_default_kms_key_id
+  other_required_args: []
+- operation: reset_fpga_image_attribute
+  other_required_args:
+  - FpgaImageId
+- operation: reset_image_attribute
+  other_required_args:
+  - Attribute
+  - ImageId
+- operation: reset_instance_attribute
+  other_required_args:
+  - InstanceId
+  - Attribute
+- operation: reset_network_interface_attribute
+  other_required_args:
+  - NetworkInterfaceId
+- operation: reset_snapshot_attribute
+  other_required_args:
+  - Attribute
+  - SnapshotId
+- operation: restore_address_to_classic
+  other_required_args:
+  - PublicIp
+- operation: restore_image_from_recycle_bin
+  other_required_args:
+  - ImageId
+- operation: restore_managed_prefix_list_version
+  other_required_args:
+  - PrefixListId
+  - PreviousVersion
+  - CurrentVersion
+- operation: restore_snapshot_from_recycle_bin
+  other_required_args:
+  - SnapshotId
+- operation: restore_snapshot_tier
+  other_required_args:
+  - SnapshotId
+- operation: restore_volume_from_recycle_bin
+  other_required_args:
+  - VolumeId
+- operation: revoke_client_vpn_ingress
+  other_required_args:
+  - ClientVpnEndpointId
+  - TargetNetworkCidr
+- operation: revoke_security_group_egress
+  other_required_args:
+  - GroupId
+- operation: revoke_security_group_ingress
+  other_required_args: []
+- operation: run_instances
+  other_required_args:
+  - MaxCount
+  - MinCount
+- operation: run_scheduled_instances
+  other_required_args:
+  - LaunchSpecification
+  - ScheduledInstanceId
+- operation: search_local_gateway_routes
+  other_required_args:
+  - LocalGatewayRouteTableId
+- operation: search_transit_gateway_multicast_groups
+  other_required_args:
+  - TransitGatewayMulticastDomainId
+- operation: search_transit_gateway_routes
+  other_required_args:
+  - TransitGatewayRouteTableId
+  - Filters
+- operation: send_diagnostic_interrupt
+  other_required_args:
+  - InstanceId
+- operation: start_declarative_policies_report
+  other_required_args:
+  - S3Bucket
+  - TargetId
+- operation: start_instances
+  other_required_args:
+  - InstanceIds
+- operation: start_network_insights_access_scope_analysis
+  other_required_args:
+  - NetworkInsightsAccessScopeId
+  - ClientToken
+- operation: start_network_insights_analysis
+  other_required_args:
+  - NetworkInsightsPathId
+  - ClientToken
+- operation: start_vpc_endpoint_service_private_dns_verification
+  other_required_args:
+  - ServiceId
+- operation: stop_instances
+  other_required_args:
+  - InstanceIds
+- operation: terminate_client_vpn_connections
+  other_required_args:
+  - ClientVpnEndpointId
+- operation: terminate_instances
+  other_required_args:
+  - InstanceIds
+- operation: unassign_private_nat_gateway_address
+  other_required_args:
+  - NatGatewayId
+  - PrivateIpAddresses
+- operation: unlock_snapshot
+  other_required_args:
+  - SnapshotId
+- operation: unmonitor_instances
+  other_required_args:
+  - InstanceIds
+- operation: update_capacity_manager_monitored_tag_keys
+  other_required_args: []
+- operation: update_capacity_manager_organizations_access
+  other_required_args:
+  - OrganizationsAccess
+- operation: update_interruptible_capacity_reservation_allocation
+  other_required_args:
+  - CapacityReservationId
+  - TargetInstanceCount
+- operation: update_security_group_rule_descriptions_egress
+  other_required_args: []
+- operation: update_security_group_rule_descriptions_ingress
+  other_required_args: []
+- operation: withdraw_byoip_cidr
+  other_required_args:
+  - Cidr
+emr:
+- operation: get_on_cluster_app_ui_presigned_url
+  other_required_args:
+  - ClusterId
+es:
+- operation: cancel_domain_config_change
+  other_required_args:
+  - DomainName
+- operation: update_elasticsearch_domain_config
+  other_required_args:
+  - DomainName
+kms:
+- operation: create_grant
+  other_required_args:
+  - KeyId
+  - Operations
+- operation: decrypt
+  other_required_args: []
+- operation: derive_shared_secret
+  other_required_args:
+  - KeyId
+  - KeyAgreementAlgorithm
+  - PublicKey
+- operation: encrypt
+  other_required_args:
+  - KeyId
+  - Plaintext
+- operation: generate_data_key
+  other_required_args:
+  - KeyId
+- operation: generate_data_key_pair
+  other_required_args:
+  - KeyId
+  - KeyPairSpec
+- operation: generate_data_key_pair_without_plaintext
+  other_required_args:
+  - KeyId
+  - KeyPairSpec
+- operation: generate_data_key_without_plaintext
+  other_required_args:
+  - KeyId
+- operation: generate_mac
+  other_required_args:
+  - Message
+  - KeyId
+  - MacAlgorithm
+- operation: re_encrypt
+  other_required_args:
+  - DestinationKeyId
+- operation: retire_grant
+  other_required_args: []
+- operation: revoke_grant
+  other_required_args:
+  - KeyId
+  - GrantId
+- operation: sign
+  other_required_args:
+  - KeyId
+  - Message
+  - SigningAlgorithm
+- operation: verify
+  other_required_args:
+  - KeyId
+  - Message
+  - Signature
+  - SigningAlgorithm
+- operation: verify_mac
+  other_required_args:
+  - Message
+  - KeyId
+  - MacAlgorithm
+  - Mac
+lambda:
+- operation: update_function_code
+  other_required_args:
+  - FunctionName
+license-manager:
+- operation: extend_license_consumption
+  other_required_args:
+  - LicenseConsumptionToken
+medialive:
+- operation: create_channel
+  other_required_args: []
+- operation: start_monitor_deployment
+  other_required_args:
+  - Identifier
+- operation: update_channel
+  other_required_args:
+  - ChannelId
+meteringmarketplace:
+- operation: meter_usage
+  other_required_args:
+  - ProductCode
+  - Timestamp
+  - UsageDimension
+mgh:
+- operation: associate_created_artifact
+  other_required_args:
+  - ProgressUpdateStream
+  - MigrationTaskName
+  - CreatedArtifact
+- operation: associate_discovered_resource
+  other_required_args:
+  - ProgressUpdateStream
+  - MigrationTaskName
+  - DiscoveredResource
+- operation: associate_source_resource
+  other_required_args:
+  - ProgressUpdateStream
+  - MigrationTaskName
+  - SourceResource
+- operation: create_progress_update_stream
+  other_required_args:
+  - ProgressUpdateStreamName
+- operation: delete_progress_update_stream
+  other_required_args:
+  - ProgressUpdateStreamName
+- operation: disassociate_created_artifact
+  other_required_args:
+  - ProgressUpdateStream
+  - MigrationTaskName
+  - CreatedArtifactName
+- operation: disassociate_discovered_resource
+  other_required_args:
+  - ProgressUpdateStream
+  - MigrationTaskName
+  - ConfigurationId
+- operation: disassociate_source_resource
+  other_required_args:
+  - ProgressUpdateStream
+  - MigrationTaskName
+  - SourceResourceName
+- operation: import_migration_task
+  other_required_args:
+  - ProgressUpdateStream
+  - MigrationTaskName
+- operation: notify_application_state
+  other_required_args:
+  - ApplicationId
+  - Status
+- operation: notify_migration_task_state
+  other_required_args:
+  - ProgressUpdateStream
+  - MigrationTaskName
+  - Task
+  - UpdateDateTime
+  - NextUpdateSeconds
+- operation: put_resource_attributes
+  other_required_args:
+  - ProgressUpdateStream
+  - MigrationTaskName
+  - ResourceAttributeList
+migrationhub-config:
+- operation: create_home_region_control
+  other_required_args:
+  - HomeRegion
+  - Target
+network-firewall:
+- operation: create_firewall_policy
+  other_required_args:
+  - FirewallPolicyName
+  - FirewallPolicy
+- operation: create_rule_group
+  other_required_args:
+  - RuleGroupName
+  - Type
+  - Capacity
+- operation: update_firewall_policy
+  other_required_args:
+  - UpdateToken
+  - FirewallPolicy
+- operation: update_rule_group
+  other_required_args:
+  - UpdateToken
+opensearch:
+- operation: cancel_domain_config_change
+  other_required_args:
+  - DomainName
+- operation: update_domain_config
+  other_required_args:
+  - DomainName
+outposts:
+- operation: start_capacity_task
+  other_required_args:
+  - OutpostIdentifier
+  - InstancePools
+pinpoint-sms-voice-v2:
+- operation: send_media_message
+  other_required_args:
+  - DestinationPhoneNumber
+  - OriginationIdentity
+- operation: send_notify_text_message
+  other_required_args:
+  - NotifyConfigurationId
+  - DestinationPhoneNumber
+  - TemplateVariables
+- operation: send_notify_voice_message
+  other_required_args:
+  - NotifyConfigurationId
+  - DestinationPhoneNumber
+  - TemplateVariables
+- operation: send_rcs_message
+  other_required_args:
+  - DestinationPhoneNumber
+  - OriginationIdentity
+- operation: send_text_message
+  other_required_args:
+  - DestinationPhoneNumber
+- operation: send_voice_message
+  other_required_args:
+  - DestinationPhoneNumber
+  - OriginationIdentity
+redshift:
+- operation: create_snapshot_schedule
+  other_required_args: []
+- operation: modify_lakehouse_configuration
+  other_required_args:
+  - ClusterIdentifier
+ssm:
+- operation: delete_inventory
+  other_required_args:
+  - TypeName

@@ -11,6 +11,13 @@ setup(
         'boto3',
         'pyyaml',
     ],
+    extras_require={
+        'test': [
+            'pytest',
+            'hypothesis',
+            'moto[ec2,s3,kms]',
+        ],
+    },
     entry_points={
         'console_scripts': [
             'cloudprivs = cloudprivs.cli:cli'

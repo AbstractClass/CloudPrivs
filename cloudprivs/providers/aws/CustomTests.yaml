@@ -1,70 +1,305 @@
 ---
 alexaforbusiness:
-  - create_address_book:
-      args:
-      kwargs:
-        Name: "Test"
+- create_address_book:
+    args: null
+    kwargs:
+      Name: Test
 cloudsearchdomain:
-  - search:
-      args:
-      kwargs:
-        query: "*"
+- search:
+    args: null
+    kwargs:
+      query: '*'
 codeguru-reviewer:
-  - list_code_reviews:
-      args:
-      kwargs:
-        Type: "RepositoryAnalysis"
+- list_code_reviews:
+    args: null
+    kwargs:
+      Type: RepositoryAnalysis
 cognito_identity:
-  - list_:
-      args:
-      kwargs:
-        MaxResults: 1
+- list_:
+    args: null
+    kwargs:
+      MaxResults: 1
 ec2:
-  - describe_images:
-      args:
-      kwargs:
-        DryRun: True
-        Owners: 
-          - self
-  - describe:
-      args:
-      kwargs:
-        DryRun: True
+- describe_images:
+    args: null
+    kwargs:
+      DryRun: true
+      Owners:
+      - self
+- describe:
+    args: null
+    kwargs:
+      DryRun: true
+- accept_transit_gateway_multicast_domain_associations:
+    args: null
+    kwargs:
+      DryRun: true
+- reject_transit_gateway_multicast_domain_associations:
+    args: null
+    kwargs:
+      DryRun: true
+- disable_aws_network_performance_metric_subscription:
+    args: null
+    kwargs:
+      DryRun: true
+- deregister_transit_gateway_multicast_group_members:
+    args: null
+    kwargs:
+      DryRun: true
+- deregister_transit_gateway_multicast_group_sources:
+    args: null
+    kwargs:
+      DryRun: true
+- enable_aws_network_performance_metric_subscription:
+    args: null
+    kwargs:
+      DryRun: true
+- enable_reachability_analyzer_organization_sharing:
+    args: null
+    kwargs:
+      DryRun: true
+- replace_image_criteria_in_allowed_images_settings:
+    args: null
+    kwargs:
+      DryRun: true
+- update_security_group_rule_descriptions_ingress:
+    args: null
+    kwargs:
+      DryRun: true
+- update_security_group_rule_descriptions_egress:
+    args: null
+    kwargs:
+      DryRun: true
+- update_capacity_manager_monitored_tag_keys:
+    args: null
+    kwargs:
+      DryRun: true
+- create_vpc_endpoint_service_configuration:
+    args: null
+    kwargs:
+      DryRun: true
+- modify_account_vpc_encryption_control:
+    args: null
+    kwargs:
+      DryRun: true
+- disable_snapshot_block_public_access:
+    args: null
+    kwargs:
+      DryRun: true
+- delete_spot_datafeed_subscription:
+    args: null
+    kwargs:
+      DryRun: true
+- disable_ebs_encryption_by_default:
+    args: null
+    kwargs:
+      DryRun: true
+- disable_image_block_public_access:
+    args: null
+    kwargs:
+      DryRun: true
+- modify_instance_metadata_defaults:
+    args: null
+    kwargs:
+      DryRun: true
+- authorize_security_group_ingress:
+    args: null
+    kwargs:
+      DryRun: true
+- enable_ebs_encryption_by_default:
+    args: null
+    kwargs:
+      DryRun: true
+- create_verified_access_instance:
+    args: null
+    kwargs:
+      DryRun: true
+- disable_allowed_images_settings:
+    args: null
+    kwargs:
+      DryRun: true
+- create_ipam_resource_discovery:
+    args: null
+    kwargs:
+      DryRun: true
+- disable_serial_console_access:
+    args: null
+    kwargs:
+      DryRun: true
+- revoke_security_group_ingress:
+    args: null
+    kwargs:
+      DryRun: true
+- create_instance_event_window:
+    args: null
+    kwargs:
+      DryRun: true
+- create_traffic_mirror_filter:
+    args: null
+    kwargs:
+      DryRun: true
+- create_traffic_mirror_target:
+    args: null
+    kwargs:
+      DryRun: true
+- enable_serial_console_access:
+    args: null
+    kwargs:
+      DryRun: true
+- reset_ebs_default_kms_key_id:
+    args: null
+    kwargs:
+      DryRun: true
+- disable_capacity_manager:
+    args: null
+    kwargs:
+      DryRun: true
+- create_internet_gateway:
+    args: null
+    kwargs:
+      DryRun: true
+- create_public_ipv4_pool:
+    args: null
+    kwargs:
+      DryRun: true
+- enable_capacity_manager:
+    args: null
+    kwargs:
+      DryRun: true
+- create_placement_group:
+    args: null
+    kwargs:
+      DryRun: true
+- create_transit_gateway:
+    args: null
+    kwargs:
+      DryRun: true
+- delete_launch_template:
+    args: null
+    kwargs:
+      DryRun: true
+- modify_launch_template:
+    args: null
+    kwargs:
+      DryRun: true
+- request_spot_instances:
+    args: null
+    kwargs:
+      DryRun: true
+- create_default_subnet:
+    args: null
+    kwargs:
+      DryRun: true
+- delete_security_group:
+    args: null
+    kwargs:
+      DryRun: true
+- disassociate_address:
+    args: null
+    kwargs:
+      DryRun: true
+- cancel_import_task:
+    args: null
+    kwargs:
+      DryRun: true
+- create_default_vpc:
+    args: null
+    kwargs:
+      DryRun: true
+- create_nat_gateway:
+    args: null
+    kwargs:
+      DryRun: true
+- associate_address:
+    args: null
+    kwargs:
+      DryRun: true
+- allocate_address:
+    args: null
+    kwargs:
+      DryRun: true
+- delete_key_pair:
+    args: null
+    kwargs:
+      DryRun: true
+- import_snapshot:
+    args: null
+    kwargs:
+      DryRun: true
+- release_address:
+    args: null
+    kwargs:
+      DryRun: true
+- create_volume:
+    args: null
+    kwargs:
+      DryRun: true
+- import_image:
+    args: null
+    kwargs:
+      DryRun: true
+- create_ipam:
+    args: null
+    kwargs:
+      DryRun: true
+- create_vpc:
+    args: null
+    kwargs:
+      DryRun: true
 iam:
-  - list_user_policies:
-      args:
-      kwargs:
-        UserName: "root"
-  - list_groups_for_user:
-      args:
-      kwargs:
-        UserName: "root"
+- list_user_policies:
+    args: null
+    kwargs:
+      UserName: root
+- list_groups_for_user:
+    args: null
+    kwargs:
+      UserName: root
+kms:
+- retire_grant:
+    args: null
+    kwargs:
+      DryRun: true
+- decrypt:
+    args: null
+    kwargs:
+      DryRun: true
+medialive:
+- create_channel:
+    args: null
+    kwargs:
+      DryRun: true
 organizations:
-  - list_policies:
-      args:
-      kwargs:
-        Filter: "SERVICE_CONTROL_POLICY"
+- list_policies:
+    args: null
+    kwargs:
+      Filter: SERVICE_CONTROL_POLICY
 ram:
-  - list_resources:
-      args:
-      kwargs:
-        resourceOwner: "SELF"
-  - list_principals:
-      args:
-      kwargs:
-        resourceOwner: "SELF"
+- list_resources:
+    args: null
+    kwargs:
+      resourceOwner: SELF
+- list_principals:
+    args: null
+    kwargs:
+      resourceOwner: SELF
+redshift:
+- create_snapshot_schedule:
+    args: null
+    kwargs:
+      DryRun: true
 s3:
-  - list_object:
-      args:
-      kwargs:
-        Bucket: "sdkjfgbsjfhbkjhbehjriugfjshfbha"
+- list_object:
+    args: null
+    kwargs:
+      Bucket: sdkjfgbsjfhbkjhbehjriugfjshfbha
 swf:
-  - list_domains:
-      args:
-      kwargs:
-        registrationStatus: "REGISTERED"
+- list_domains:
+    args: null
+    kwargs:
+      registrationStatus: REGISTERED
 wafv2:
-  - list_:
-      args:
-      kwargs:
-        Scope: "REGIONAL"
+- list_:
+    args: null
+    kwargs:
+      Scope: REGIONAL
