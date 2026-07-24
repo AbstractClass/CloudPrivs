@@ -1,4 +1,9 @@
 ---
+# Reserved key (not a real AWS service name): point a service's clients at a custom
+# endpoint instead of the default public one, e.g. a beta/gamma endpoint that may not
+# be covered by the same CloudTrail logging as the standard one.
+# _endpoints:
+#   ec2: "https://ec2-gamma.us-east-1.amazonaws.com"
 alexaforbusiness:
 - create_address_book:
     args: null

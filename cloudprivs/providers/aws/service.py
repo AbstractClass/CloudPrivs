@@ -104,6 +104,9 @@ class Service:
                     'kwargs': { '$KEY': '$VALUE', }
                 },
             ]}
+            The reserved key '_endpoints' (not a real service name, so it can't collide)
+            optionally maps service name to a custom endpoint_url to use instead of the
+            default one: { '_endpoints': { '$SERVICE_NAME': '$ENDPOINT_URL' } }
         :executor: A ThreadPoolExecutor to do bulk testing in parallel
         :timeout: how long to wait for a connection to AWS
         :retries: how many times to retry the AWS connection before erroring
@@ -127,6 +130,15 @@ class Service:
         else:
             self.injected_args = injected_args
 
+        # Reserved top-level key in the injected_args YAML (alongside the normal
+        # per-service operation rules) for pointing a service's clients at a
+        # non-standard endpoint instead of the default public one - e.g. testing
+        # against a beta/gamma endpoint, which is sometimes not covered by the same
+        # CloudTrail logging as the standard endpoint. No real AWS service is named
+        # "_endpoints", so this can't collide with a service's own rule list.
+        # { '_endpoints': { '$SERVICE_NAME': '$ENDPOINT_URL' } }
+        self.endpoint_url = self.injected_args.get("_endpoints", {}).get(service)
+
         self.regions = self.session.get_available_regions(service)
 
         # except AttributeError:  # Some services don't have regions
@@ -149,7 +161,12 @@ class Service:
             len(self.regions) > 0
         ):  # this could be more DRY but I like how explicit this is
             self.clients = [
-                session.client(service, region_name=region, config=self.config)
+                session.client(
+                    service,
+                    region_name=region,
+                    config=self.config,
+                    endpoint_url=self.endpoint_url,
+                )
                 for region in self.regions
             ]
         else:
