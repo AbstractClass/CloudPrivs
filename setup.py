@@ -4,12 +4,16 @@ setup(
     name='cloudprivs',
     author='Connor MacLeod',
     version='1.1.0',
-    py_modules=find_packages(),
+    packages=find_packages(),
+    package_data={
+        'cloudprivs.providers.aws': ['*.yaml'],
+    },
     include_package_data=True,
     install_requires=[
         'Click',
         'boto3',
         'pyyaml',
+        'rich',
     ],
     extras_require={
         'test': [

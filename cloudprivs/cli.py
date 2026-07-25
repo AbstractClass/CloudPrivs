@@ -3,6 +3,7 @@ import cloudprivs.providers as providers
 import click
 import importlib
 
+from rich.console import Console
 from typing import Optional, List
 
 
@@ -13,17 +14,21 @@ def cli():
 
     To see arguments for each provider supply the provider name with '--help' (i.e. cloudprivs aws --help)
     """
-    click.echo(
+    console = Console()
+    console.print(
         """
-    
-   ________                ______       _           
+
+   ________                ______       _
   / ____/ /___  __  ______/ / __ \_____(_)   _______
  / /   / / __ \/ / / / __  / /_/ / ___/ / | / / ___/
-/ /___/ / /_/ / /_/ / /_/ / ____/ /  / /| |/ (__  ) 
-\____/_/\____/\__,_/\__,_/_/   /_/  /_/ |___/____/  
-                                                    
+/ /___/ / /_/ / /_/ / /_/ / ____/ /  / /| |/ (__  )
+\____/_/\____/\__,_/\__,_/_/   /_/  /_/ |___/____/
+
     by Connor MacLeod - twitter@0xc130d github@AbstractClass
-    """
+    """,
+        style="bold cyan",
+        markup=False,
+        highlight=False,
     )
 
 

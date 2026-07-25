@@ -8,50 +8,79 @@ import yaml
 
 from .service import Service, TESTS_LOCATION, MAX_WORKERS, InvalidRegionError
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from rich.console import Console, Group
+from rich.live import Live
+from rich.progress import (
+    Progress,
+    SpinnerColumn,
+    TextColumn,
+    BarColumn,
+    MofNCompleteColumn,
+    TimeElapsedColumn,
+)
+from rich.text import Text
 from typing import Optional, List, TextIO
 
 
 def scan_service(
-    service_name: str, executor: ThreadPoolExecutor, verbose: bool, **kwargs
+    service_name: str,
+    executor: ThreadPoolExecutor,
+    verbose: bool,
+    console: Console,
+    progress: Progress,
+    status_text: Text,
+    **kwargs,
 ):
     """
     Helper function for the CLI, run Service.scan(), parse the output and print to terminal.
-    Originally made for use in ThreadPoolExecutor.
 
     :service_name: str - the AWS service name
     :executor: ThreadPoolExecutor - will be passed into Service
     :verbose: bool - Should only successful test be printed
+    :console: rich Console to print results through
+    :progress: rich Progress driving the per-service task for this scan
+    :status_text: rich Text updated with which operation is currently being tested,
+        rendered as its own line above the progress bars (see aws() below)
     """
     results = [f"=== {service_name} ==="]
     try:
         client = Service(service_name, executor=executor, **kwargs)
+        task_id = progress.add_task(
+            f"{service_name}",
+            total=len(client.operations) * len(client.clients),
+        )
+        client.progress = progress
+        client.task_id = task_id
+        client.status_text = status_text
+        client.console = console
         scan_results = client.scan()
+        progress.remove_task(task_id)
         results += client.pretty_print_scan(scan_results, only_hits=verbose)
     except InvalidRegionError:
         results.append(
             f"[!] Service: {service_name} is not available in the regions supplied"
         )
-    # for result in sorted(results, key=lambda x: ["=", "+", "-", "!"].index(x[1])):
-    title = ''
+    title = ""
     successes = []
     fails = []
     errors = []
     for result in results:
-        if result.startswith('='):
+        if result.startswith("="):
             title = result
-        elif result.startswith('[+]'):
+        elif result.startswith("[+]"):
             successes.append(result)
-        elif result.startswith('[-]'):
+        elif result.startswith("[-]"):
             fails.append(result)
         else:
             errors.append(result)
-    click.echo(click.style(title,fg="white"))
+    console.print(title, style="white", markup=False)
     for i in sorted(successes):
-        click.echo(click.style(i, fg="green"))
+        console.print(i, style="green", markup=False)
     for i in sorted(fails):
-        click.echo(click.style(i, fg="red"))
+        console.print(i, style="red", markup=False)
     for i in sorted(errors):
-        click.echo(click.style(i, fg="red"))
+        console.print(i, style="red", markup=False)
+
 
 @click.option(
     "--regions",
@@ -91,22 +120,21 @@ def aws(
     services: Optional[List[str]],
     verbose: bool,
 ):
+    console = Console()
     executor = ThreadPoolExecutor(max_workers=MAX_WORKERS)
     if profile:
         session = boto3.Session(profile_name=profile)
     else:
         session = boto3.Session()
     try:
-        click.echo("[*] Established AWS Session")
+        console.print("[*] Established AWS Session", style="cyan", markup=False)
         session.client("sts").get_caller_identity()
-        click.echo("[*] Validated credentials")
+        console.print("[*] Validated credentials", style="cyan", markup=False)
     except botocore.exceptions.ClientError as e:
-        click.echo(
-            click.style(
-                "[!] Unable to contact AWS using these creds, are you sure they are valid?",
-                fg="red",
-            ),
-            err=True,
+        console.print(
+            "[!] Unable to contact AWS using these creds, are you sure they are valid?",
+            style="red",
+            markup=False,
         )
         raise e
 
@@ -116,7 +144,7 @@ def aws(
     if custom_tests:
         extra_tests = yaml.safe_load(custom_tests)
         injected_vars.update(extra_tests)
-    click.echo("[*] Loaded test arguments")
+    console.print("[*] Loaded test arguments", style="cyan", markup=False)
 
     target_services = session.get_available_services()
     if services:
@@ -124,24 +152,41 @@ def aws(
             s for s in target_services if s in services
         ]  # We don't use reduce in the python world :P
 
-    click.echo("[*] Enumerated services and regions")
+    console.print("[*] Enumerated services and regions", style="cyan", markup=False)
 
     start = time.time()
-    futures = [
-        executor.submit(
+    # status_text is rendered as its own line above the progress bars (see the Group
+    # below), separate from any task's description - updating a task's description
+    # in place every operation made the bar's row bounce/flicker as the
+    # "service->operation in region" text grew and shrank.
+    status_text = Text("", style="dim")
+    progress = Progress(
+        SpinnerColumn(),
+        TextColumn("[progress.description]{task.description}"),
+        BarColumn(),
+        MofNCompleteColumn(),
+        TimeElapsedColumn(),
+    )
+    with Live(Group(status_text, progress), console=console, refresh_per_second=10):
+        overall_task = progress.add_task(
+            "Scanning services", total=len(target_services)
+        )
+        for service in target_services:
             scan_service(
                 service,
                 executor,
                 not verbose,
+                console,
+                progress,
+                status_text,
                 session=session,
                 regions=regions,
                 injected_args=injected_vars,
             )
-        )
-        for service in target_services
-    ]
-    for _ in as_completed(futures):
-        pass
-    click.echo(f"Finished in {time.time() - start:.2f} seconds")
-    click.echo("Happy hunting ;)")
+            progress.advance(overall_task)
+
+    console.print(
+        f"Finished in {time.time() - start:.2f} seconds", style="white", markup=False
+    )
+    console.print("Happy hunting ;)", style="white", markup=False)
     return

@@ -1,4 +1,5 @@
 import os
+from typing import Optional, Tuple
 
 import botocore.session
 import click
@@ -67,30 +68,60 @@ def build_dry_run_operations(session: botocore.session.Session) -> dict:
     return dry_run_ops
 
 
+def regenerate_metadata_files(
+    session: Optional[botocore.session.Session] = None,
+) -> Tuple[dict, dict]:
+    """
+    Build ErrorShapes.yaml's and DryRunOperations.yaml's data from whatever botocore is
+    currently installed, and write both files to disk. This is cheap (well under a
+    second, no network calls - it's pure local introspection of botocore's bundled
+    service models) so Service always calls this itself at import time rather than
+    trusting a possibly-stale checked-in copy of the YAML; AWS adds services and
+    operations constantly, and there's no flag to opt into freshness.
+
+    The disk write is best-effort only: the returned dicts are what actually drives
+    Service's behavior, computed directly from botocore, not read back from disk. If
+    the install is read-only (e.g. a system-wide non-editable install) the write is
+    skipped rather than crashing the whole tool - the files are a convenience/review
+    artifact, not a functional dependency.
+
+    :session: botocore session to introspect; defaults to a fresh one if omitted
+
+    :returns: (error_shapes, dry_run_operations) - the same dicts written to the YAML
+        files, for callers (like service.py) that want the data without re-reading it
+        from disk.
+    """
+    session = session or botocore.session.get_session()
+
+    error_shapes = build_error_shapes(session)
+    dry_run_ops = build_dry_run_operations(session)
+
+    try:
+        with open(ERROR_SHAPES_LOCATION, "w") as f:
+            yaml.dump(error_shapes, f, sort_keys=True, default_flow_style=False)
+        with open(DRY_RUN_OPERATIONS_LOCATION, "w") as f:
+            yaml.dump(dry_run_ops, f, sort_keys=True, default_flow_style=False)
+    except OSError:
+        pass
+
+    return error_shapes, dry_run_ops
+
+
 @click.command("generate-aws-metadata")
 def generate_aws_metadata():
     """
     Regenerate ErrorShapes.yaml and DryRunOperations.yaml from the AWS service models
-    bundled with the currently installed botocore. AWS adds services and operations
-    constantly, and these files only reflect whatever botocore version was installed
-    when they were last generated - re-run this after every botocore upgrade
-    (`uv pip install -U boto3 botocore`) to pick up new coverage.
+    bundled with the currently installed botocore and print a summary. Service already
+    does this itself automatically on every run, so this command is just a convenience
+    for regenerating the files on their own (e.g. to review a diff) without needing to
+    run a scan.
     """
-    session = botocore.session.get_session()
+    click.echo("[*] Building ErrorShapes.yaml and DryRunOperations.yaml from service models...")
+    error_shapes, dry_run_ops = regenerate_metadata_files()
 
-    click.echo("[*] Building ErrorShapes.yaml from service models...")
-    error_shapes = build_error_shapes(session)
-    with open(ERROR_SHAPES_LOCATION, "w") as f:
-        yaml.dump(error_shapes, f, sort_keys=True, default_flow_style=False)
     click.echo(f"    -> {len(error_shapes)} services with exception shapes")
-
-    click.echo("[*] Building DryRunOperations.yaml from service models...")
-    dry_run_ops = build_dry_run_operations(session)
-    with open(DRY_RUN_OPERATIONS_LOCATION, "w") as f:
-        yaml.dump(dry_run_ops, f, sort_keys=True, default_flow_style=False)
     total_ops = sum(len(v) for v in dry_run_ops.values())
     click.echo(f"    -> {len(dry_run_ops)} services, {total_ops} operations support DryRun")
-
     click.echo("[*] Done. Diff the two files and review before committing.")
 
 
