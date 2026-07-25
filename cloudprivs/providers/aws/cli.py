@@ -13,6 +13,7 @@ from rich.live import Live
 from rich.progress import (
     Progress,
     SpinnerColumn,
+    TaskID,
     TextColumn,
     BarColumn,
     MofNCompleteColumn,
@@ -29,6 +30,7 @@ def scan_service(
     console: Console,
     progress: Progress,
     status_text: Text,
+    task_id: TaskID,
     **kwargs,
 ):
     """
@@ -41,45 +43,65 @@ def scan_service(
     :progress: rich Progress driving the per-service task for this scan
     :status_text: rich Text updated with which operation is currently being tested,
         rendered as its own line above the progress bars (see aws() below)
+    :task_id: the single per-service TaskID reused across every service (see aws()
+        below) - reset here rather than removed/re-added, since adding and removing a
+        task per service made that row disappear and reappear for every single
+        service, which is what caused the progress bars to visibly flicker.
     """
-    results = [f"=== {service_name} ==="]
+    # Printed immediately, before scanning even starts - test_all_operations prints
+    # diagnostics (connection timeouts, unhandled exceptions) live from worker threads
+    # as each operation completes, while this service is still being scanned. If the
+    # header were only printed afterwards, batched together with the results (as it
+    # used to be), a slow service's own diagnostics would appear to trail the
+    # *previous* service's header instead, since that header hadn't been printed yet
+    # by the time they fired - easy to misread as belonging to the wrong service.
+    console.print(f"=== {service_name} ===", style="white", markup=False)
+
+    results = []
+    progress.reset(task_id, total=1, description=service_name)
     try:
         client = Service(service_name, executor=executor, **kwargs)
-        task_id = progress.add_task(
-            f"{service_name}",
-            total=len(client.operations) * len(client.clients),
+        progress.update(
+            task_id, total=len(client.operations) * len(client.clients)
         )
         client.progress = progress
         client.task_id = task_id
         client.status_text = status_text
         client.console = console
         scan_results = client.scan()
-        progress.remove_task(task_id)
         results += client.pretty_print_scan(scan_results, only_hits=verbose)
     except InvalidRegionError:
         results.append(
             f"[!] Service: {service_name} is not available in the regions supplied"
         )
-    title = ""
     successes = []
     fails = []
     errors = []
     for result in results:
-        if result.startswith("="):
-            title = result
-        elif result.startswith("[+]"):
+        if result.startswith("[+]"):
             successes.append(result)
         elif result.startswith("[-]"):
             fails.append(result)
         else:
             errors.append(result)
-    console.print(title, style="white", markup=False)
+
+    if not (successes or fails or errors):
+        return
+
+    # Build the rest of this service's output as a single Text with per-line styling
+    # and print it in one call. Printing each line separately (one console.print() per
+    # [+]/[-] result) meant a Live-active console had to pause and redraw once per
+    # line - for a service with dozens of hits (IAM commonly has 20+) that's dozens of
+    # redraws in rapid succession, which is what caused the progress bars to visibly
+    # flicker.
+    output = Text()
     for i in sorted(successes):
-        console.print(i, style="green", markup=False)
+        output.append(i + "\n", style="green")
     for i in sorted(fails):
-        console.print(i, style="red", markup=False)
+        output.append(i + "\n", style="red")
     for i in sorted(errors):
-        console.print(i, style="red", markup=False)
+        output.append(i + "\n", style="red")
+    console.print(output, markup=False)
 
 
 @click.option(
@@ -171,6 +193,11 @@ def aws(
         overall_task = progress.add_task(
             "Scanning services", total=len(target_services)
         )
+        # Created once and reused (via progress.reset() in scan_service) rather than
+        # added/removed per service - removing and re-adding a task made its row
+        # disappear and reappear for every single service, which is what caused the
+        # progress bars to visibly flicker.
+        service_task = progress.add_task("", total=1)
         for service in target_services:
             scan_service(
                 service,
@@ -179,6 +206,7 @@ def aws(
                 console,
                 progress,
                 status_text,
+                service_task,
                 session=session,
                 regions=regions,
                 injected_args=injected_vars,

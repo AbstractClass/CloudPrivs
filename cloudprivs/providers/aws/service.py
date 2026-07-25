@@ -188,10 +188,28 @@ class Service:
         if (
             len(self.regions) > 0
         ):  # this could be more DRY but I like how explicit this is
+            # "aws-global" is a label we made up for filtering/reporting purposes when
+            # get_available_regions() returns nothing (see the fallback above) - it is
+            # NOT a real AWS region, and passing it straight to session.client()
+            # produces a bogus hostname like bedrock-agent.aws-global.amazonaws.com
+            # that never resolves, causing a real (and slow: the full connect_timeout
+            # every time) ConnectTimeoutError for every operation. Services actually
+            # missing from get_available_regions() fall into two very different
+            # buckets: some (e.g. billing, ce) have a genuine global endpoint that
+            # botocore's endpoint-ruleset resolution figures out correctly given ANY
+            # real region name; others (e.g. bedrock-agent) are simply regional
+            # services not yet reflected in botocore's legacy partition data, and need
+            # an actual region to resolve at all. Substituting a real region name (the
+            # session's configured one, or us-east-1) lets botocore's ruleset engine
+            # sort out which case applies instead of us guessing - confirmed live: the
+            # exact same "aws-global" fallback fixes bedrock-agent (was: always timed
+            # out; now: resolves and returns real data) while leaving already-working
+            # global services like billing/ce unaffected.
+            fallback_region = self.session.region_name or "us-east-1"
             self.clients = [
                 session.client(
                     service,
-                    region_name=region,
+                    region_name=region if region != "aws-global" else fallback_region,
                     config=self.config,
                     endpoint_url=self.endpoint_url,
                 )
@@ -430,10 +448,21 @@ class Service:
                     f"[!] Connection timeout: {self.service_name}->{operation} in {region}"
                 )
             except AttributeError as e:
-                raise e
-                print(
-                    f"[!] Boto3 LIED! {self.service_name}->{operation} isn't in {self.service_name}",
-                    file=sys.stderr,
+                if not hasattr(client, operation):
+                    # boto3 claimed this method existed (it's in
+                    # method_to_api_mapping, which is where self.operations came
+                    # from) but it genuinely doesn't - that's a real, fatal
+                    # inconsistency worth stopping everything to investigate, not
+                    # just this one operation.
+                    raise e
+                # The attribute exists; this AttributeError came from somewhere deep
+                # inside actually executing the call (observed in the wild: a bug in
+                # moto's own KMS mock for retire_grant hit None.startswith() - nothing
+                # to do with boto3 lying about the method existing). Treat it like any
+                # other unexpected exception rather than crashing the whole scan over
+                # one operation.
+                self._print_diagnostic(
+                    f"[!] Oopsie woopsie :3, hit an unhandled exception at {self.service_name}->{operation} in {region}: {e}"
                 )
             except Exception as e:
                 self._print_diagnostic(
@@ -447,17 +476,23 @@ class Service:
         Scan all operations for the service and all regions, then translate the results to be grouped by region for easier analysis.
         The results are translated from the region being the primary key to the method being the primary key, this is done to maximize re-use of clients.
 
+        Regions are scanned one at a time rather than submitted to self.executor -
+        test_all_operations submits its own (usually much higher-cardinality)
+        per-operation calls to that same executor, and submitting per-region tasks to
+        it too meant a service with enough regions to fill every worker thread (e.g.
+        S3, available in 34 regions vs MAX_WORKERS=30) would deadlock: every thread
+        occupied by a region-level task blocked waiting on operation-level tasks that
+        could never get a free thread to run on. Rate limiting is per-endpoint (each
+        region is a separate one), so there's no throughput reason to run regions
+        concurrently against a shared pool - each region's operations are still fully
+        parallelized via self.executor.
+
         :returns: Dict with keys of AWS operation names and values of OperationPermissionsByRegion objects
         """
         operation_permissions = []
         operation_permissions_by_region = {}
-        futures = {
-            self.executor.submit(self.test_all_operations, client): client
-            for client in self.clients
-        }
-
-        for future in as_completed(futures):
-            operation_permissions += future.result()
+        for client in self.clients:
+            operation_permissions += self.test_all_operations(client)
 
         # Translate List of OperationPermissions into a list of OperationPermissionsByRegion
         for operation in operation_permissions:

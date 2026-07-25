@@ -2,6 +2,7 @@ import io
 from unittest.mock import patch
 
 import boto3
+import pytest
 from rich.console import Console
 from rich.progress import Progress
 from rich.text import Text
@@ -113,3 +114,55 @@ class TestDiagnosticPrinting:
         output = buf.getvalue()
         assert "Oopsie woopsie" in output
         assert "boom" in output
+
+
+class TestAttributeErrorHandling:
+    """
+    Regression coverage for distinguishing two different causes of an AttributeError
+    from test_permission:
+
+    1. The operation name genuinely isn't an attribute on the client at all, even
+       though it came from method_to_api_mapping - a real, fatal inconsistency worth
+       stopping everything over (the original "Boto3 LIED!" case).
+    2. The attribute exists, but something deep inside actually executing the call
+       raised an AttributeError for an unrelated reason (observed in the wild: a bug
+       in moto's own KMS mock for retire_grant hit None.startswith()). This must be
+       treated like any other unexpected exception, not crash the whole scan over one
+       operation.
+    """
+
+    def _make_service(self, console=None):
+        session = boto3.Session(
+            region_name="us-east-1",
+            aws_access_key_id="testing",
+            aws_secret_access_key="testing",
+        )
+        return Service(
+            "s3", session, executor=None, regions=["us-east-1"], console=console
+        )
+
+    def test_genuinely_missing_operation_still_raises(self):
+        svc = self._make_service()
+        client = svc.clients[0]
+        svc.operations = ["totally_fake_operation_that_does_not_exist"]
+        svc.dry_run_operations = set()
+
+        with pytest.raises(AttributeError):
+            svc.test_all_operations(client)
+
+    def test_attribute_error_from_a_real_operation_does_not_crash_the_scan(self):
+        buf = io.StringIO()
+        console = Console(file=buf, force_terminal=False)
+        svc = self._make_service(console=console)
+        client = svc.clients[0]
+
+        def boom(*args, **kwargs):
+            raise AttributeError("'NoneType' object has no attribute 'startswith'")
+
+        with patch.object(svc, "test_permission", side_effect=boom):
+            results = svc.test_all_operations(client)  # must not raise
+
+        assert results == []
+        output = buf.getvalue()
+        assert "Oopsie woopsie" in output
+        assert "startswith" in output
